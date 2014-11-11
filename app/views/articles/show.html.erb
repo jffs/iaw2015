@@ -1,2 +1,27 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<br/>
+
+<CENTER><h1><%= @articulo.nombre %></h1>
+<h4>-------------------------------------------------------------</h4>
+<br/>
+<%= image_tag @articulo.foto, :width => 600, :height => 400 %>
+<br/>
+<br/>
+<h2>Descripcion</h2>
+<p><%= @articulo.descripcion %></p>
+<br/>
+<a href="/coment/new" class="btn btn-danger" role="button">Comentar</a>
+<a href="/offer/new" class="btn btn-danger" role="button">Ofertar</a>
+</CENTER>
+<br/>
+<br/>
+
+<table class="table table-striped">	
+    <tr>
+	    <th> Comentarios </th>	
+    </tr>		
+    <% Coment.where(article_id: @articulo.id).each do |c| %>	 	
+    <tr>	
+        <td> <%= c.contenido %> </td>	
+    </tr>		
+    <% end %>	
+</table>

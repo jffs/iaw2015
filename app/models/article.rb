@@ -1,2 +1,15 @@
 class Article < ActiveRecord::Base
+has_many :coments
+has_many :ofers
+belongs_to :category
+belongs_to :user
+
+mount_uploader :foto, FotoUploader
+
+validates_presence_of :nombre, :descripcion, :duracion, :foto
+
+def self.search(search)
+	where("nombre like ?", "%#{search}%") 
+end
+
 end

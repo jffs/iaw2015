@@ -6,9 +6,28 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-<%= yield %>
-
+	<%= render 'layouts/header' %>
+	<div class="container"> 
+		<div class="col-md-2">
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h3> Categorias</h3>
+			<% categories = Category.all %>
+       		<% categories.each do |c| %>   
+        	<tr>    
+              <td> c.nombre</td>
+              <% end %> 
+			</tr>   
+		    <br/>
+    		
+    	</div>
+		<div class="col-md-10">    
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>
