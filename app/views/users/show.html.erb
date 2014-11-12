@@ -1,2 +1,27 @@
-<h1>Users#show</h1>
+<!--<h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+-->
+<br/>
+<div class="container"> 
+	<div class="col-md-8">
+		<CENTER><h1><strong><%= @usuario.nick %></strong></h1>
+		<h4>-------------------------------------------------------------</h4>
+		<br/></CENTER>
+	</div>
+	<div class="col-md-4">
+		<%= image_tag @usuario.foto, :width => 150, :height => 150 %>
+		<br/>
+	</div>
+
+<h2>Datos del usuario</h2>
+<br/>
+<h3>Nombre y apellido: <%=@usuario.nombre%> <%=@usuario.apellido%></h3>
+</br>
+<h3>Nombre de usuario: <%=@usuario.nick%></h3>
+</br>
+<h3>Correo: <%=@usuario.correo%></h3>
+</br>
+<h3>Teléfono: <%=@usuario.telefono%></h3>
+<%= link_to "Editar", edit_user_path(@usuario) ,  class: 'btn btn-info btn-danger btn-ln'%>
+<%= link_to "Eliminar", destroy_user_path(@usuario), data: { confirm: 'Estás seguro?' },  class: 'btn btn-danger btn-ln'%>
+<%= link_to "Volver", users_path , class: 'btn btn-danger btn-ln'%>

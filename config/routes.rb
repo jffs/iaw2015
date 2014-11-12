@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   get 'users/edit'
   get 'users/create'
   get 'users/destroy'
+  get '/users/:id/destroy', to: 'users#destroy', as: 'destroy_user'
 
-  root 'articles#index'
+ 
+  root 'articles#home'
 
   resources :offers
   resources :articles

@@ -1,5 +1,5 @@
 <br/>
-
+<% @ide=@articulo.id %>
 <CENTER><h1><%= @articulo.nombre %></h1>
 <h4>-------------------------------------------------------------</h4>
 <br/>
@@ -9,8 +9,10 @@
 <h2>Descripcion</h2>
 <p><%= @articulo.descripcion %></p>
 <br/>
-<a href="/coment/new" class="btn btn-danger" role="button">Comentar</a>
-<a href="/offer/new" class="btn btn-danger" role="button">Ofertar</a>
+<%= link_to "Comentar", () ,class: "btn btn-danger" %>
+
+<%= link_to "Ofertar", new_offer_path(@ide) ,class: "btn btn-danger" %>
+
 </CENTER>
 <br/>
 <br/>

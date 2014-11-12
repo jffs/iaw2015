@@ -1,22 +1,31 @@
 class OffersController < ApplicationController
-  def new
+  before_action :get_offer, only: [:show,:destroy,:edit, :update]
+  
+  def get_offer
+  @oferta = Offer.find(params[:id])
   end
 
-  def index
-  end
-
-  def update
-  end
-
-  def show
+  def new  
+  @oferta=Offer.new
   end
 
   def edit
   end
-
+  
+  def update
+    @oferta.update(params.require(:offer).permit([:contenido,:precio]))
+    redirect_to @oferta, :notice => "Oferta editada exitosamente"
+  end  
   def create
+    @oferta=Offer.create!(params.require(:offer).permit([:contenido,:precio, :article_id]))
+    redirect_to @oferta, :notice => "Oferta creada exitosamente"
   end
-
+  def show
+  end
+  def index
+  end
   def destroy
+    @oferta.destroy
+    redirect_to offers_path, :notice => "Oferta eliminada satisfactoriamente"
   end
 end

@@ -3,7 +3,7 @@
   		  <div class="row">
           <div class="col-md-6">
             <%= f.label :nombre %>
-            <%= f.text_field :nombre, class: 'form-control',  placeholder: 'Ingrese Titulo del articulo' %>
+            <%= f.text_field :nombre, class: 'form-control', required: true, placeholder: 'Ingrese Titulo del articulo' %>
           </div>
         </div>
         <br />
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-6">
             <%= f.label :descripcion %> 
-            <%= f.text_area :descripcion, class: 'form-control', placeholder: 'Ingrese la descripcion del articulo' %>
+            <%= f.text_area :descripcion, class: 'form-control', required: true, message: "completa" ,placeholder: 'Ingrese la descripcion del articulo' %>
           </div>
         </div>
         <br /> 
@@ -24,11 +24,11 @@
         </div>
         
         <div class="row">
-          <div class="col-md-6">
-            <%= f.label :estado,'Nuevo' %>
-            <%= f.check_box 'estado' %>
+          <div class="col-md-8">
+            <%= f.label :estado %>
+            <%=f.select :estado, ['Nuevo', 'Usado'] , class: 'form-control' %>
           </div>
-        </div>
+        </div>  
         
         <div class="row">
           <div class="col-md-4">

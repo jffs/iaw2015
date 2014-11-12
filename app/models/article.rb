@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 has_many :coments
-has_many :ofers
+has_many :offers
 belongs_to :category
 belongs_to :user
 
