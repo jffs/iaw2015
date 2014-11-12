@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111021744) do
+ActiveRecord::Schema.define(version: 20141112031518) do
 
   create_table "articles", force: true do |t|
     t.string   "nombre"
@@ -40,13 +40,16 @@ ActiveRecord::Schema.define(version: 20141111021744) do
 
   create_table "offers", force: true do |t|
     t.text     "contenido"
-    t.float    "precio"
-    t.string   "estado"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.float    "precio",     default: 0.0
+    t.string   "estado",     default: "En espera"
     t.integer  "user_id"
     t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "offers", ["article_id"], name: "index_offers_on_article_id"
+  add_index "offers", ["user_id"], name: "index_offers_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "nombre"

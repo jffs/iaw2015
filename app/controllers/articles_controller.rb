@@ -15,7 +15,11 @@ class ArticlesController < ApplicationController
 
   def update
     @articulo.update(article_params)
-    redirect_to articles_path
+    if @articulo.save
+      redirect_to @articulo, :notice => "Articulo editado exitosamente"
+    else
+      redirect_to :back, :notice => "Error al editar articulo"
+    end
   end
 
   def show
@@ -26,7 +30,11 @@ class ArticlesController < ApplicationController
 
   def create
     @articulo = Article.create!(article_params)
-    redirect_to articles_path
+    if @articulo.save
+      redirect_to articles_path, :notice => "Articulo creado exitosamente"
+    else
+      redirect_to :back, :notice => "Error al crear articulo"
+    end
   end
 
   def destroy

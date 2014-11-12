@@ -3,7 +3,7 @@
   		  <div class="row">
           <div class="col-md-6">
             <%= f.label :nombre %>
-            <%= f.text_field :nombre, class: 'form-control',  placeholder: 'Ingrese Titulo del articulo' %>
+            <%= f.text_field :nombre, class: 'form-control',required: true,  placeholder: 'Ingrese Titulo del articulo' %>
           </div>
         </div>
         <br />
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-6">
             <%= f.label :descripcion %> 
-            <%= f.text_area :descripcion, class: 'form-control', placeholder: 'Ingrese la descripcion del articulo' %>
+            <%= f.text_area :descripcion, class: 'form-control',required: true, placeholder: 'Ingrese la descripcion del articulo' %>
           </div>
         </div>
         <br /> 

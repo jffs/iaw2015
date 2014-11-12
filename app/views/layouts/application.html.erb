@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
 	<%= render 'layouts/header' %>
 	<div class="container"> 
 		<div class="col-md-2">
@@ -15,6 +16,7 @@
 			<br/>
 			<br/>
 			<br/>
+
 			<h3> Categorias</h3>
 			<% categories = Category.all %>
        		<% categories.each do |c| %>   
@@ -26,8 +28,15 @@
     		
     	</div>
 		<div class="col-md-10">    
-			<%= yield %>
+			<% if flash[:notice] %>
+	<div class="alert alert-success" role='alert'>
+		<%= flash[:notice] %>
+	</div>
+<%end%>
+<%= yield %>
 		</div>
 	</div>
+
+
 </body>
 </html>

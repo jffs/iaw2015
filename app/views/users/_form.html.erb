@@ -1,0 +1,70 @@
+<%=form_for @usuario , :html => {:multipart => true} do |f|   %> 
+  <div class="col-xs-6 col-md-4">	 
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label :nombre %>
+    	<%= f.text_field :nombre, class: 'form-control',required: true,  placeholder: 'Ingrese Nombre' %>
+  	</div>
+  </div>
+  <br/>
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label :apellido %>
+    	<%= f.text_field :apellido, class: 'form-control',required: true,  placeholder: 'Ingrese Apellido' , %>
+  	</div>
+  </div>
+  <br/>
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label "Nombre de usuario" %>
+    	<%= f.text_field :nick, class: 'form-control',required: true,  placeholder: 'Ingrese un nombre de usuario' %>
+  	</div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.label "Contraseña" %>
+      <%= f.password_field :contrasena, class: 'form-control',required: true,  placeholder: 'Ingrese una contraseña' %>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label "Contraseña" %>
+    	<%= f.password_field :contrasena, class: 'form-control',required: true,  placeholder: 'Repita la contraseña' %>
+  	</div>
+  </div>
+  <br/>
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label :correo %>
+    	<%= f.text_field :correo, class: 'form-control',required: true,  placeholder: 'Ingrese su correo' %>
+  	</div>
+  </div>
+  <br/>
+  
+  <div class="row">
+  	<div class="col-md-8">
+    	<%= f.label :telefono %>
+    	<%= f.text_field :telefono, class: 'form-control',  placeholder: 'Ingrese su teléfono' %>
+  	</div>
+  </div> 
+<br/>
+<div class="row">
+    <div class="col-md-8">
+      <%= f.label :sexo %><br/>
+      <%=f.select :sexo, ['Masculino', 'Femenino'] , class: 'form-control',  placeholder: 'Ingrese su teléfono' %>
+    </div>
+  </div> 
+<br/>
+  <div class="row">
+          <div class="col-md-8">
+            <%= f.label :foto,'Foto' %>
+            <%= f.file_field :foto %>
+          </div>
+        </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+  </div>
+<%  end  %>
+

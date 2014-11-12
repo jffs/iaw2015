@@ -1,2 +1,22 @@
-<h1>Offers#show</h1>
-<p>Find me in app/views/offers/show.html.erb</p>
+<h2> Tu oferta es la siguiente </h2>
+<table class="table">
+
+	<tr>
+		<th> Oferta </th>
+		<th> Dinero ofrecido </th>
+		<th> Estado </th>
+		<th> Acciones </th>
+		<th> Tiempo </th>
+	</tr>
+	<tr>
+			<td><%= word_wrap(@oferta.contenido, line_width: 10) %></td>
+			<td> <%= number_to_currency @oferta.precio %> </td>
+			<td> <%= @oferta.estado %> </td>
+			<td>
+				<%= link_to "Editar", edit_offer_path(@oferta), class: 'btn btn-info btn-sm' %>
+				<%= link_to "Eliminar", @oferta, method: :delete,  data: {confirm: "Estás seguro?"},class: 'btn btn-danger btn-sm' %>
+			</td>
+			<td> <%= time_ago_in_words @oferta.created_at %> ago </td> 
+
+		</tr></div>
+</table>
