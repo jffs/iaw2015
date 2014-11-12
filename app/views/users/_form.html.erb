@@ -10,7 +10,7 @@
   <div class="row">
   	<div class="col-md-8">
     	<%= f.label :apellido %>
-    	<%= f.text_field :apellido, class: 'form-control',required: true,  placeholder: 'Ingrese Apellido' , %>
+    	<%= f.text_field :apellido, class: 'form-control',required: true,  placeholder: 'Ingrese Apellido'%>
   	</div>
   </div>
   <br/>
@@ -25,7 +25,7 @@
     <div class="col-md-8">
       <%= f.label "Contraseña" %>
       <%= f.password_field :contrasena, class: 'form-control',required: true,  placeholder: 'Ingrese una contraseña' %>
-    </div>
+  </div>
   </div>
   <br/>
   <div class="row">
@@ -63,8 +63,8 @@
             <%= f.file_field :foto %>
           </div>
         </div>
-
-  <button type="submit" class="btn btn-primary">Enviar</button>
+         <br/>
+  <button type="submit" class="btn btn-danger">Guardar</button>
   </div>
 <%  end  %>
 

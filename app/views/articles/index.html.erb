@@ -1,6 +1,5 @@
 <br/>
 <br/>
-<br/>
 <h1> Articulos </h1>
 <table class="table">	
 	<tr>
@@ -18,7 +17,7 @@
 			 <td> <%=time_ago_in_words a.created_at %>    </td>
 			 <td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
 			 <td> <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
-			 <%= link_to "Eliminar", a,method: :delete, data: { confirm: 'Estás seguro?' } ,class: "btn btn-danger"%> </td>
+			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%> </td>
 		</tr>	
 	<% end %>	
 </table>
