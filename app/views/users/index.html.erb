@@ -1,7 +1,5 @@
-<!--<h1>Users#index</h1>-->
-<!--<p>Find me in app/views/users/index.html.erb</p>-->
 
-<h1> Usuarios registrados en Bestnid </h1>
+<h1> Usuarios registrados</h1>
 
 <table class="table">
 
@@ -9,6 +7,7 @@
 		<th> Usuario </th>
 		<th> Foto </th>
 		<th> Acciones </th>
+		<th><%= link_to "Registrarse" , new_user_path(), class: 'btn btn-info btn-danger'%></th>
 	</tr>
 
 	<% usuarios = User.all %>

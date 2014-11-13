@@ -12,6 +12,7 @@
 	<%#oferta = Oferta.where(:usuario_id :current_user) %>
 
 	<% oferta = Offer.all%>
+
 <% if oferta.size == 0 %>
 		<tr class="success"> <td colspan="3"> Todavía no realizaste ninguna oferta </td> </tr>
  <%else%>
@@ -24,7 +25,6 @@
 			<td> <%= link_to 'Ver oferta', o %>
 		</tr>
 	<% end %>
-
 <% end %>
 
 </table>

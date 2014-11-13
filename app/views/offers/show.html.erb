@@ -4,6 +4,7 @@
 	<tr>
 		<th> Oferta </th>
 		<th> Dinero ofrecido </th>
+		<th> Articulo </th>
 		<th> Estado </th>
 		<th> Acciones </th>
 		<th> Tiempo </th>
@@ -11,6 +12,7 @@
 	<tr>
 			<td><%= word_wrap(@oferta.contenido, line_width: 10) %></td>
 			<td> <%= number_to_currency @oferta.precio %> </td>
+			<td><%= link_to @oferta.article.nombre ,@oferta.article%> </td>
 			<td> <%= @oferta.estado %> </td>
 			<td>
 				<%= link_to "Editar", edit_offer_path(@oferta), class: 'btn btn-info btn-sm' %>
