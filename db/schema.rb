@@ -47,10 +47,6 @@ ActiveRecord::Schema.define(version: 20141112031518) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "offers", ["article_id"], name: "index_offers_on_article_id"
-  add_index "offers", ["user_id"], name: "index_offers_on_user_id"
-
   create_table "users", force: true do |t|
     t.string   "nombre"
     t.string   "apellido"
