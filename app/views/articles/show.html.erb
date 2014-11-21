@@ -17,14 +17,3 @@
 </CENTER>
 <br/>
 <br/>
-
-<table class="table table-striped">	
-    <tr>
-	    <th> Comentarios </th>	
-    </tr>		
-    <% Coment.where(article_id: @articulo.id).each do |c| %>	 	
-    <tr>	
-        <td> <%= c.contenido %> </td>	
-    </tr>		
-    <% end %>	
-</table>

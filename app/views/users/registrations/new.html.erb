@@ -1,0 +1,75 @@
+<h2>Sign</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+    <div class="field">
+      <%= f.label :nombre %><br />
+      <%= f.text_field :nombre,required: true,  placeholder: 'Ingrese Nombre' %>
+    
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.label :apellido %><br />
+      <%= f.text_field :apellido,required: true,  placeholder: 'Ingrese Apellido'%>
+    </div>
+  </div>
+  <br/> <div class="row">
+    <div class="col-md-8">
+      <%= f.label "Nombre de usuario" %><br />
+      <%= f.text_field :nick,required: true,  placeholder: 'Ingrese un nombre de usuario' %>
+    </div>
+  </div>
+
+  
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.label :telefono %><br />
+      <%= f.text_field :telefono, placeholder: 'Ingrese su teléfono' %>
+    </div>
+  </div> 
+
+<div class="row">
+    <div class="col-md-8">
+      <%= f.label :sexo %><br/>
+      <%=f.select :sexo, ['Masculino', 'Femenino'] ,   placeholder: 'Ingrese su teléfono' %>
+    </div>
+  </div> 
+<br/>
+  <div class="row">
+          <div class="col-md-8">
+            <%= f.label :foto,'Foto' %><br />
+            <%= f.file_field :foto %>
+          </div>
+        </div>
+         <br/>
+    <div class="actions">      
+  <button type="submit" class="btn btn-danger">Sign up</button>
+  </div>
+  </div>
+
+  
+<% end %>
+   
+
+
+<%= render "users/shared/links" %>

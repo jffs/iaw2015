@@ -1,0 +1,13 @@
+<%= form_for @categoria do |f| %>
+</br>
+<div class="row">
+          <div class="col-md-3"> </br>
+			<%= f.label "Nombre *"%> 
+			<%=f.text_field :nombre,class: "form-control" , required: true, placeholder: "Nombre de la categoría" %>
+          </div>
+</div>
+</br>
+<tr>
+	<th><%= f.submit 'Enviar', class: 'btn btn-danger'%></th>
+</tr>
+<% end %>

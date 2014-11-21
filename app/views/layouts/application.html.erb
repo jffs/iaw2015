@@ -16,15 +16,15 @@
 			<br/>
 			<br/>
 			<br/>
-
-			<h3> Categorias</h3>
+<h3> Categorias</h3>
 			<% categories = Category.all %>
        		<% categories.each do |c| %>   
-        	<tr>    
-              <td> c.nombre</td>
-              <% end %> 
+        		<tr>   
+        		<td> <li><%= link_to Category.find(c.id).nombre, c %></td>
+			<% end %> 
 			</tr>   
 		    <br/>
+    		
     		
     	</div>
 		<div class="col-md-10">    
@@ -32,6 +32,10 @@
 				<div class="alert alert-success" role='alert'>
 					<%= flash[:notice] %>
 				</div>
+				<%end%>
+			<% if flash[:alert] %>
+			    <div class="alert alert-error"><%= flash[:alert] %>
+			    </div>	
 			<%end%>
 		<%= yield %>
 		</div>

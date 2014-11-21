@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'offers/new'
   get 'offers/index'
   get 'offers/update'
@@ -29,7 +30,8 @@ Rails.application.routes.draw do
   resources :offers
   resources :articles
   resources :users
-
+  resources :categories
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

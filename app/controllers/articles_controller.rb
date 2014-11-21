@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @articulo = Article.create!(article_params)
+    @articulo = Article.create!(params.require(:article).permit([:descripcion,:nombre,:duracion,:estado,:foto,:category_id]))
     if @articulo.save
       redirect_to articles_path, :notice => "Articulo creado exitosamente"
     else

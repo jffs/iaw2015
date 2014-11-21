@@ -16,10 +16,12 @@
 <h3>Nombre y apellido: <%=@usuario.nombre%> <%=@usuario.apellido%></h3>
 </br>
 <h3>Nombre de usuario: <%=@usuario.nick%></h3>
-</br>
-<h3>Correo: <%=@usuario.correo%></h3>
-</br>
+
+<h3>Correo: <%=@usuario.email%></h3>
+
 <h3>Teléfono: <%=@usuario.telefono%></h3>
+</br>
 <%= link_to "Editar", edit_user_path(@usuario) ,  class: 'btn btn-info btn-danger btn-ln'%>
 <%= link_to "Eliminar", destroy_user_path(@usuario), data: { confirm: 'Estás seguro?' },  class: 'btn btn-danger btn-ln'%>
 <%= link_to "Volver", users_path , class: 'btn btn-danger btn-ln'%>
+
