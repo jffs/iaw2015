@@ -10,7 +10,7 @@ before_filter :configure_permitted_parameters,if: :devise_controller?
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:nombre, :apellido,:sexo,:telefono,:nick,:foto,
+      u.permit(:nombre, :apellido,:sexo,:telefono,:nick,:foto,:role,
         :email, :password, :password_confirmation)
     end
     devise_parameter_sanitizer.for(:account_update) do |u|

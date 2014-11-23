@@ -2,7 +2,15 @@
 <h1>Bienvenidos a Bestnid</h1>
 <br/>
 
+
+<% if can? :index, Article %>
 <%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
+<%end%>
+<% if can? :index, User %>
 <%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
+<%end%>
+<% if can? :index, Offer %>
 <%= link_to "Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
+<%end%>
+
 </CENTER>

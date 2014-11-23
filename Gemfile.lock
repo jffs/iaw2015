@@ -33,6 +33,7 @@ GEM
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.2.2)
+    cancan (1.6.10)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -96,6 +97,7 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rolify (3.4.1)
     sass (3.2.19)
     sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -133,6 +135,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.7)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
@@ -140,6 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.0)
+  cancan
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
@@ -147,9 +153,12 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.1.4)
+  rolify
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sqlite3
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+  will_paginate
+  will_paginate-bootstrap

@@ -10,10 +10,17 @@
 <p><%= @articulo.descripcion %></p>
 <br/>
 
+<% if can? :edit, @article %>
+  <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
+<% end %>
 
-<%= link_to "Comentar", () ,class: "btn btn-danger" %>
+<%= link_to "Comentar", () ,class: "btn btn-danger" %>  <!--ver-->
 
+<%if can? :new , Offer%>
 <%= link_to "Ofertar", new_offer_path(@ide) ,class: "btn btn-danger" %>
+<% end %>
+
 </CENTER>
 <br/>
 <br/>
+

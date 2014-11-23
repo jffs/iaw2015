@@ -6,8 +6,9 @@
 		 <th> Nombre </th>	
 		 <th> Duracion </th>
 		 <th> Foto </th>
-		 <th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
-
+		   <%if can? :new , Article%>
+		   <th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
+		   <%end%>
     </tr>
    
     <% @articulos.each do |a| %>  	
@@ -16,8 +17,13 @@
 			 <% d = Time.now  %>
 			 <td> <%=time_ago_in_words a.created_at %>    </td>
 			 <td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
+			 
+			 <%if can? :edit , Article%>
 			 <td> <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
+			 <%end%>
+			 <%if can? :destroy , Article%>
 			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%> </td>
+			 <%end%>
 		</tr>	
 	<% end %>	
 </table>

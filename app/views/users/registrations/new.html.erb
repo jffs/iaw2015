@@ -54,7 +54,12 @@
       <%=f.select :sexo, ['Masculino', 'Femenino'] ,   placeholder: 'Ingrese su teléfono' %>
     </div>
   </div> 
-<br/>
+  <div class="row">
+          <div class="col-md-8">
+             <%= f.label :foto,'Categoria' %><br />
+             <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+          </div>
+        </div>
   <div class="row">
           <div class="col-md-8">
             <%= f.label :foto,'Foto' %><br />

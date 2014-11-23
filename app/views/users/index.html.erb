@@ -1,20 +1,21 @@
 
 <h1> Usuarios registrados</h1>
-
 <table class="table">
 
 	<tr>
 		<th> Usuario </th>
+		<th> Categoria</th>
 		<th> Foto </th>
 		<th> Acciones </th>
 		<th><%= link_to "Registrarse" , new_user_path(), class: 'btn btn-info btn-danger'%></th>
 	</tr>
 
-	<% usuarios = User.all %>
+	<% usuarios = @usuario%>
 	<% usuarios.each do |usuario| %>
 		<tr>
 			
 			<td> <%= link_to usuario.nick, usuario %> </td>
+			<td> <%= usuario.role %> </td>
 			<td><%= image_tag usuario.foto, :width => 128, :height => 128 %> </td> 
 			<td>
 				<%= link_to "Editar", edit_user_path(usuario) ,  class: 'btn btn-info btn-sm'%>
@@ -26,5 +27,5 @@
 	<% if User.all.size == 0 %>
 		<tr> <td colspan="3"> No hay usuarios registrados </td> </tr>
 	<% end %>
-
 </table>
+<CENTER><%= will_paginate @usuario ,  renderer: BootstrapPagination::Rails %></CENTER>

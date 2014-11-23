@@ -30,6 +30,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'devise'
+gem 'rolify'
+gem 'cancan'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
