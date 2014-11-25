@@ -34,6 +34,8 @@ gem 'rolify'
 gem 'cancan'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem "twitter-bootstrap-rails"
+gem "therubyracer"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -14,12 +14,24 @@
   <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
 <% end %>
 
-<%= link_to "Comentar", () ,class: "btn btn-danger" %>  <!--ver-->
+<%= link_to "Comentar", new_comment_path(@articulo) ,class: "btn btn-danger" %>  <!--ver-->
 
 <%if can? :new , Offer%>
 <%= link_to "Ofertar", new_offer_path(@ide) ,class: "btn btn-danger" %>
 <% end %>
-
+		
+			<table class="table">
+				<tr>
+		 			<th>COMENTARIOS</th>
+		 		</tr>
+		   <% @comentario=Comment.where(article_id: @articulo.id)%>
+		   <% @comentario.each do |c| %>    
+           <td><%= c.contenido %></td>
+      	  	   <td><%= link_to "Editar ", edit_comment_path(c.id) ,class: "btn btn-primary" %>
+    		  <%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %> </td>
+		   	</tr>
+		   <% end %> 
+  		</table>
 </CENTER>
 <br/>
 <br/>

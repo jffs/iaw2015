@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
   def get_article
     @articulo = Article.find(params[:id])
   end
+  
+  def home
+    @articulos = Article.all
+  end
 
   def new
     @articulo = Article.new
@@ -29,7 +33,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @articulo = Article.create!(params.require(:article).permit([:descripcion,:nombre,:duracion,:estado,:foto,:category_id]))
+    @articulo = Article.create!(article_params)
+    @articulo.user_id = current_user.id
+    @articulo.save    
     if @articulo.save
       redirect_to articles_path, :notice => "Articulo creado exitosamente"
     else
@@ -46,6 +52,6 @@ class ArticlesController < ApplicationController
   private
   
   def article_params 
-     params.require(:article).permit([:nombre,:descripcion,:duracion,:estado,:foto]) 
+     params.require(:article).permit([:descripcion,:nombre,:duracion,:estado,:foto,:user_id,:category_id]) 
   end
 end

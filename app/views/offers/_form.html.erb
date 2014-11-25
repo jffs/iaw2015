@@ -1,15 +1,15 @@
 <%= form_for @oferta do |f| %>
 </br>
 <div class="row">
-          <div class="col-md-3">
-			<%= f.label :precio %> </br>
-		    <%= f.number_field :precio, class: "form-control", required: true, placeholder: "¿Cuánto está dispuesto a pagar?" %>
+          <div class="col-md-3"> </br>
+			<%= f.label "Precio *"%> 
+			<%=f.number_field :precio, :class => 'text_field', :min => 0, :step => 0.01 ,class: "form-control" , required: true, placeholder: "¿Cuánto está dispuesto a pagar?" %>
           </div>
 </div>
 <div class="row">
           <div class="col-md-6">
     		</br>
- 			<%= f.label :Oferta %> </br>
+ 			<%= f.label "Oferta *" %> </br>
  			<%= f.text_area :contenido, class: "form-control", required: true, placeholder: "¿Por qué desea este producto?" %>
           </div>
 </div>

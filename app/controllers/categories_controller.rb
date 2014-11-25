@@ -13,8 +13,10 @@ class CategoriesController < ApplicationController
     @categoria = Category.all
   end
 
-  def update
-  end
+ def update
+   @categoria.update(params.require(:category).permit([:nombre]))  
+   redirect_to @categoria
+  end  
 
   def show
   end
@@ -23,11 +25,16 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @categoria=Category.create!(params.require(:category).permit([:nombre]))
-    redirect_to @categoria, :notice => "Categoria creada exitosamente"
+    @categoria=Category.create(params.require(:category).permit([:nombre]))
+    if @categoria.save
+      redirect_to :root, :notice => "Categoria creada exitosamente"
+    else
+      redirect_to :back, :notice => "Categoria existente"
+    end
   end 
-  
 
-  def destroy
+   def destroy
+    @categoria.destroy
+    redirect_to :root 
   end
 end

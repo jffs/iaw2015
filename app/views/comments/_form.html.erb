@@ -1,0 +1,12 @@
+ <%= form_for @comentario do |f| %>
+ <div class="row">
+          <center><div class="col-md-6">
+            <%= f.label :contenido %> 
+           <%= f.text_area :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %>
+           </div><center/>
+        </div>
+        <br>
+ <tr>      
+        <th><%= f.submit 'Enviar', class: 'btn btn-danger'%></th>
+</tr><br/>
+<% end %>

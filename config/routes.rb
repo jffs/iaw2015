@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :comments 
+  resources :offers
+  resources :articles
+  resources :users
+  resources :categories
+  
   get 'offers/new'
   get 'offers/index'
   get 'offers/update'
@@ -25,12 +32,9 @@ Rails.application.routes.draw do
   get 'users/destroy'
   get '/users/:id/destroy', to: 'users#destroy', as: 'destroy_user'
 
-  root 'articles#home'
+ 
 
-  resources :offers
-  resources :articles
-  resources :users
-  resources :categories
+  root 'articles#home'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
