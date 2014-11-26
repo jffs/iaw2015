@@ -35,7 +35,9 @@ gem 'cancan'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem "twitter-bootstrap-rails"
-gem "therubyracer"
+ gem 'therubyracer', :platform => :ruby
+
+gem 'libv8', '3.16.14.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

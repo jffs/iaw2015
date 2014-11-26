@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categoria = Category.all
   end
 
  def update
@@ -35,6 +34,6 @@ class CategoriesController < ApplicationController
 
    def destroy
     @categoria.destroy
-    redirect_to :root 
+    redirect_to :back 
   end
 end
