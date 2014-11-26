@@ -2,7 +2,9 @@
 <h1>Bienvenidos a Bestnid</h1>
 <br/>
 
-
+<% if current_user != nil %>
+<%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
+<%end%>
 <% if can? :index, Article %>
 <%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
 <%end%>

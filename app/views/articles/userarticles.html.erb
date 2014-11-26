@@ -1,0 +1,33 @@
+<br/>
+<br/>
+<h1> Mis Articulos </h1>
+<table class="table">	
+	<tr>
+		 <th> Nombre </th>	
+		 <th> Duracion </th>
+		 
+		 <th> Foto </th>
+		   <%if can? :new , Article%>
+		   <th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
+		   <%end%>
+    </tr>
+   
+    <% @articulos.each do |a| %>  	
+ 		
+
+ 		<tr>	
+			 <td> <%= link_to a.nombre, article_path(a) %> </td>	
+			 <% d = Time.now  %>
+			 <td> <%=time_ago_in_words a.created_at %>    </td>
+			 
+			 <td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
+			 
+			 <%if (can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin")) %>
+			 <td> <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
+			 
+			 
+			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%> </td>
+			 <%end%>
+		</tr>	
+	<% end %>	
+</table>

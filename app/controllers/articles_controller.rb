@@ -8,7 +8,9 @@ class ArticlesController < ApplicationController
   def home
     @articulos = Article.all
   end
-
+  def userarticles
+    @articulos = Article.where(user_id: current_user.id)
+  end
   def new
     @articulo = Article.new
   end
@@ -27,6 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comentario = Comment.new
   end
 
   def edit
@@ -45,7 +48,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @articulo.destroy
-    redirect_to articles_path  
+    redirect_to :back 
   end
 
 

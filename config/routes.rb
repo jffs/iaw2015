@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'articles/create'
   get 'articles/destroy'
 
+  get '/userarticles', to: 'articles#userarticles'
+
   get 'users/new'
   get 'users/index'
   get 'users/update'

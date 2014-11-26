@@ -1,5 +1,5 @@
 <br/>
-<% @ide=@articulo.id %>
+
 <CENTER><h1><%= @articulo.nombre %></h1>
 <h4>-------------------------------------------------------------</h4>
 <br/>
@@ -10,29 +10,43 @@
 <p><%= @articulo.descripcion %></p>
 <br/>
 
-<% if can? :edit, @article %>
+<% if (can? :edit, Article) && (@articulo.user_id == current_user.id) %>
   <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
 <% end %>
 
-<%= link_to "Comentar", new_comment_path(@articulo) ,class: "btn btn-danger" %>  <!--ver-->
-
-<%if can? :new , Offer%>
-<%= link_to "Ofertar", new_offer_path(@ide) ,class: "btn btn-danger" %>
+<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) %>
+<%= link_to "Ofertar", new_offer_path(@articulo.id) ,class: "btn btn-danger" %>
 <% end %>
 		
-			<table class="table">
-				<tr>
-		 			<th>COMENTARIOS</th>
-		 		</tr>
-		   <% @comentario=Comment.where(article_id: @articulo.id)%>
-		   <% @comentario.each do |c| %>    
-           <td><%= c.contenido %></td>
-      	  	   <td><%= link_to "Editar ", edit_comment_path(c.id) ,class: "btn btn-primary" %>
-    		  <%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %> </td>
-		   	</tr>
-		   <% end %> 
-  		</table>
-</CENTER>
-<br/>
-<br/>
+<table class="table">
+	<tr>
+		<th>COMENTARIOS</th>
+	</tr>
+	<% @comentario=Comment.where(article_id: @articulo.id)%>
+	<% @comentario.each do |c| %>    
+    <tr><td><%= c.contenido %></td>
+    <%if (can? :edit, Article) && ((c.user_id == current_user.id) || (current_user.role =="admin")) %>
+      	<td><%= link_to "Editar ", edit_comment_path(c.id) ,class: "btn btn-primary" %>
+    	<%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %> </td></tr>
+	<% end %> 
+	<% end %> 
+</table>
 
+<%if can? :new , Comment %>
+<% @comentario = Comment.new %>
+<%= form_for @comentario do |f| %>
+	<div class="row">
+	<div class="col-md-7">
+            <%= f.text_area :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %></div>
+     <div class="col-md-1">
+     <%= f.hidden_field :article_id, :value => @articulo.id %> 
+    <%= f.submit 'Enviar', class: 'btn btn-danger'%></div>
+     </div>
+    <% end %>       
+<% end %>
+
+<br/>
+<% if current_user == nil %>
+   Para comentar u ofertar debe ser un usuario registrado 
+ <%end %>  
+</CENTER>
