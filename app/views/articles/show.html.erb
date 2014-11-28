@@ -14,17 +14,13 @@
 <p><%= @articulo.descripcion %></p>
 <br/>
 
-<% if (can? :edit, Article) && (@articulo.user_id == current_user.id) %>
+<% if (current_user != nil) && (can? :edit, Article) && (@articulo.user_id == current_user.id) %>
   <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
 <% end %>
 
-<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) && (Offer.where(user_id: current_user.id) == nil)%> 
+<%if (current_user != nil) &&(can? :new , Offer) && (@articulo.user_id != current_user.id)%> 
 <%= link_to "Ofertar", new_offer_path(@articulo.id) ,class: "btn btn-danger" %>
-<%else%>
-  <% if (Offer.where(user_id: current_user.id) != nil) %>
-    <div class="alert alert-danger" role="alert"> "Ya has ofertado este articulo" </div>
-    <%end%>
-<% end %>
+<%end%>
 		<br/><br/><br/><br/>
 
 
