@@ -11,7 +11,9 @@
 		   <th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
 		   <%end%>
     </tr>
-   
+   <%if @articulos.size == 0 %>
+   		<tr class="success"> <td colspan="3"> Todavía no inciaste ninguna subasta </td> </tr>
+   	<%else%>
     <% @articulos.each do |a| %>  	
  		
 
@@ -29,5 +31,6 @@
 			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%> </td>
 			 <%end%>
 		</tr>	
-	<% end %>	
+	<% end %>
+	<%end%>	
 </table>

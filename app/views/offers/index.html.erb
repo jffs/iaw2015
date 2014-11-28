@@ -9,14 +9,11 @@
 		<th> Estado </th>
 	</tr>
 
-	<%#oferta = Oferta.where(:usuario_id :current_user) %>
 
-	<% oferta = Offer.all%>
-
-<% if oferta.size == 0 %>
+<% if @oferta.size == 0 %>
 		<tr class="success"> <td colspan="3"> Todavía no realizaste ninguna oferta </td> </tr>
  <%else%>
-	<% oferta.each do |o| %>
+	<% @oferta.each do |o| %>
 		<tr>
 			<td> <%= link_to Article.find(o.article_id).nombre, article_path(o.article_id) %></td>
 			<td> <%= truncate(o.contenido, length: 30, separator: ' ') %> </td>

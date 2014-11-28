@@ -1,12 +1,16 @@
 <br/>
 
-<CENTER><h1><%= @articulo.nombre %></h1>
-<h4>-------------------------------------------------------------</h4>
-<br/>
+<CENTER><font face ='verdana' size='14'><%= @articulo.nombre %></font><hr width="700" size="200"/>
+
+<%@usuario=User.find(@articulo.user_id)%>
+<h5 style="color:red"><strong>Articulo publicado por:</strong></h5>
+<td> <%= link_to @usuario.nick, @usuario %> </td>
+<br/><br/>
 <%= image_tag @articulo.foto, :width => 600, :height => 400 %>
 <br/>
 <br/>
-<h2>Descripcion</h2>
+<font face ='verdana' size='6'>Descripcion</font>
+<br/><br/>
 <p><%= @articulo.descripcion %></p>
 <br/>
 
@@ -14,23 +18,61 @@
   <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
 <% end %>
 
-<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) %>
+<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) && (Offer.where(user_id: current_user.id) == nil)%> 
 <%= link_to "Ofertar", new_offer_path(@articulo.id) ,class: "btn btn-danger" %>
+<%else%>
+  <% if (Offer.where(user_id: current_user.id) != nil) %>
+    <div class="alert alert-danger" role="alert"> "Ya has ofertado este articulo" </div>
+    <%end%>
 <% end %>
-		
+		<br/><br/><br/><br/>
+
+
 <table class="table">
-	<tr>
-		<th>COMENTARIOS</th>
-	</tr>
-	<% @comentario=Comment.where(article_id: @articulo.id)%>
-	<% @comentario.each do |c| %>    
-    <tr><td><%= c.contenido %></td>
-    <%if (can? :edit, Article) && ((c.user_id == current_user.id) || (current_user.role =="admin")) %>
-      	<td><%= link_to "Editar ", edit_comment_path(c.id) ,class: "btn btn-primary" %>
-    	<%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %> </td></tr>
-	<% end %> 
-	<% end %> 
-</table>
+    <tr>
+        <th> COMENTARIOS </th>
+        <th> ACCIONES </th>
+    </tr> 
+              
+              <% @comentario=Comment.where(article_id: @articulo.id)%>
+              <% @comentario.each do |c| %>    
+                  <tr>
+                  <%@usuarioname=User.find(c.user_id)%>
+                  <td>
+                  <h4><strong><%= @usuarioname.nick%> preguntó: </strong><%= c.contenido %><h4>
+
+                    <table>
+                  <% @respuesta=Answer.where(comment_id: c.id)%>
+                  <% @respuesta.each do |r| %>  
+                      <tr>
+                      <%@usuarioname=User.find(r.user_id)%>
+                      
+                      <td>
+                          <div class="alert alert-info" role="alert"><STRONG><%= @usuarioname.nick %></STRONG>: <%=r.contenido%>   
+                              <%if current_user!=nil && ((r.user_id==current_user.id || current_user.role =="admin")) %>
+                                  <%=link_to "Eliminar",r, method: :delete,  data: {confirm: "Estás Seguro?"},class: "btn btn-danger btn-xs"%>
+                              <%end%>
+                          </div>
+                      </td>
+                      </tr>
+                  <%end%>         
+                  </table>
+                  <td>
+                      <%if ( (current_user!=nil)&&((@articulo.user_id == current_user.id) || (current_user.role =="admin"))) %>
+                              <%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %>
+                      <%end%>
+                      <%if current_user!=nil && (c.user_id==current_user.id || @articulo.user_id == current_user.id) %>
+                              <%= link_to "Responder", new_answer_path(c.id), class: "btn btn-primary btn-sm" %>
+                      <%end%>        
+                  </td>
+                
+
+
+
+
+                  </tr> 
+              <%end%>                
+</table>  
 
 <%if can? :new , Comment %>
 <% @comentario = Comment.new %>
@@ -47,6 +89,6 @@
 
 <br/>
 <% if current_user == nil %>
-   Para comentar u ofertar debe ser un usuario registrado 
- <%end %>  
+   Para comentar u ofertar debe iniciar sesión <%= link_to "aquí",  new_user_session_path()%>
+<%end %>  
 </CENTER>

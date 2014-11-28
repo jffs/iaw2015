@@ -56,18 +56,12 @@
   </div> 
   <div class="row">
           <div class="col-md-8">
-             <%= f.label :role,'Categoria' %><br />
-             <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-          </div>
-        </div>
-  <div class="row">
-          <div class="col-md-8">
             <%= f.label :foto,'Foto' %><br />
             <%= f.file_field :foto %>
           </div>
         </div>
          <br/>
-    <div class="actions">      
+    <div class="actions">       
   <button type="submit" class="btn btn-danger">Enviar</button>
   </div>
   </div>

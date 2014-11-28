@@ -12,6 +12,9 @@
 		   <%end%>
     </tr>
    
+   <%if @articulos.size == 0 %>
+   		<tr class="success"> <td colspan="3"> Todavía no hay articulos publicados </td> </tr>
+   	<%else%>
     <% @articulos.each do |a| %>  	
  		
 
@@ -31,4 +34,5 @@
 			 <%end%>
 		</tr>	
 	<% end %>	
+<% end %>	
 </table>

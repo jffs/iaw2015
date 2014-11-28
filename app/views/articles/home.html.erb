@@ -12,7 +12,11 @@
 <%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
 <%end%>
 <% if can? :index, Offer %>
-<%= link_to "Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
+<%= link_to " Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
+<%end%>
+
+<% if can? :index, Category%>
+<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
 <%end%>
 <br/>
 <br/>

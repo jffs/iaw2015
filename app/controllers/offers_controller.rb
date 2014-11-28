@@ -19,14 +19,15 @@ class OffersController < ApplicationController
   end  
   
   def create
-    @oferta=Offer.create!(params.require(:offer).permit([:contenido,:precio,:article_id]))
-    redirect_to @oferta, :notice => "Oferta editada exitosamente"
+    @oferta=Offer.create!(params.require(:offer).permit([:contenido,:precio,:article_id,:user_id]))
+    redirect_to @oferta, :notice => "Oferta creada exitosamente"
   end  
   
   def show
   end
   
   def index
+  @oferta = Offer.where(user_id: current_user.id)
   end
   
   def destroy
