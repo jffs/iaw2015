@@ -44,13 +44,6 @@ ActiveRecord::Schema.define(version: 20141128023351) do
     t.string   "nombre"
   end
 
-  create_table "coments", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "article_id"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "contenido"
     t.integer  "user_id"
