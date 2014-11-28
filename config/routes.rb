@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :users
   resources :categories
+  resources :answers
   
   get 'offers/new'
   get 'offers/index'
