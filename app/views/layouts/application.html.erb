@@ -17,8 +17,8 @@
 			<br/>
 			<br/>
 			<br/>
-			<tr>
-			<% if can? :index , Category %>	
+			<tr>	
+			<% if current_user != nil && User.find(current_user.id).role == "admin"  %>	
 			<td><h3><%= link_to "Categorias", categories_path %></h3></td>
 			<%else %>
 			<td><h3>Categorias</h3></td>

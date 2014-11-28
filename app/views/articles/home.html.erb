@@ -4,19 +4,21 @@
 
 <% if current_user != nil %>
 <%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
+
+<% if can? :index, Offer %>
+<%= link_to "Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
 <%end%>
+
+<% if User.find(current_user.id).role == "admin"%>
+<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
+<%end%>
+<%end%>
+
 <% if can? :index, Article %>
 <%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
 <%end%>
 <% if can? :index, User %>
 <%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
-<%end%>
-<% if can? :index, Offer %>
-<%= link_to " Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
-<%end%>
-
-<% if can? :index, Category%>
-<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
 <%end%>
 <br/>
 <br/>
