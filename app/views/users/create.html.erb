@@ -1,0 +1,16 @@
+
+<% if @usuario.errors.any? %>
+  <div id="error_explanation">
+    <h2>El artículo no pudo agregarse debido a los siguientes problemas:</h2>
+    <ul>
+    <% @usuario.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <Center><%= link_to "Volver atras" , :back %></Center> 	 
+  <% else %>
+  		<h2 style="color:green">Usuario creado satifactoriamente<h2> 
+  		<Center><%= link_to "Volver al inicio" , :root %></Center> 	
+  <% end %>
+

@@ -1,0 +1,18 @@
+<% @categorias = Category.all%>
+<% if @categorias.size != 0 %>
+
+<% @categorias.each do |c| %>
+			<tr>
+			<td> <li><%= link_to Category.find(c.id).nombre, c %></td>
+			<%= link_to "Editar", edit_category_path(c) , class: 'btn btn-info btn-sm' %>
+		
+			<%= link_to "Eliminar", c, method: :delete, data: {confirm: "Estás seguro? Si eliminas una categoria se eliminarán los articulos asociados"},class: 'btn btn-danger btn-sm'%>
+			<br/>
+			<br/>
+<%end%>
+</td>
+<%else%>
+<div class="alert alert-success" role="alert"><tr class="success"> <td colspan="3">No hay ninguna categoría creada </td> </tr></div>
+	
+<%end%>
+    		

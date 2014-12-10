@@ -1,0 +1,50 @@
+<%= form_for @articulo, :html =>{:multipart => true} do |f| %>
+        <br/>
+  		  <div class="row">
+          <div class="col-md-6">
+            <%= f.label :nombre, 'Nombre *' %>
+            <%= f.text_field :nombre, class: 'form-control',required: true,  placeholder: 'Ingrese Titulo del articulo' %>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :descripcion, 'Descripción *' %> 
+           <%= f.text_area :descripcion, class: 'form-control',required: true, placeholder: 'Ingrese la descripcion del articulo' %>
+           </div>
+        </div>
+        <br /> 
+
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.label :duracion ,'Duracion de la subasta (dias) *'%>
+            <%= f.select :duracion, [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] %>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-8">
+            <%= f.label :estado, "Estado *" %>
+            <%= f.select :estado, ['Nuevo', 'Usado'] , class: 'form-control' %>
+          </div>
+        </div>  
+        
+        <div class="row">
+          <div class="col-md-4"> 
+          <%= f.label :category_id, 'Categoría *' %>
+          <%= collection_select(:article, :category_id, Category.all, :id, :nombre, {}, { class: 'form-control'}) %>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.label :foto,'Foto *' %>
+            <%= f.file_field :foto %>
+          </div>
+        </div>
+        
+        <br /> 
+        <%= f.submit "Guardar", class: 'btn btn-danger' %>
+  	</div>
+<% end %>

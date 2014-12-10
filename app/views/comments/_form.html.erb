@@ -1,0 +1,10 @@
+ <%= form_for @comentario do |f| %>
+ <div class="row">
+          <center><div class="col-md-8">
+            <%= f.text_field :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %>
+           </div><center/>
+        
+        
+<%= f.submit 'Enviar', class: 'btn btn-danger'%>
+</div><br/>
+<% end %>

@@ -1,0 +1,41 @@
+<CENTER>
+<h1>Bienvenidos a Bestnid</h1>
+<br/>
+
+<% if current_user != nil %>
+<%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
+
+<% if can? :index, Offer %>
+<%= link_to "Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
+<%end%>
+
+<% if User.find(current_user.id).role == "admin"%>
+<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
+<%end%>
+<%end%>
+
+<% if can? :index, Article %>
+<%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
+<%end%>
+<% if can? :index, User %>
+<%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
+<%end%>
+<br/>
+<br/>
+
+<h2><%= "Productos publicados recientemente" %></h2>
+</CENTER>
+<br/>
+<div class="row">
+          
+<% @articulos.each do |a| %>  	
+ 		
+ 		<div class="col-md-3">
+			<td>
+			
+			 
+			 <%= image_tag a.foto , :width => 120, :height => 120 %> </br>
+			 <h4><%= link_to a.nombre, article_path(a) %></h4></td>
+			</div>
+	<% end %>	
+</div>
