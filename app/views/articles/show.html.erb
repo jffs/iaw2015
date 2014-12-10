@@ -2,9 +2,6 @@
 
 <CENTER><font face ='verdana' size='14'><%= @articulo.nombre %></font><hr width="700" size="200"/>
 
-<%@usuario=User.find(@articulo.user_id)%>
-<h5 style="color:red"><strong>Articulo publicado por:</strong></h5>
-<td> <%= link_to @usuario.nick, @usuario %> </td>
 <br/><br/>
 <%= image_tag @articulo.foto, :width => 600, :height => 400 %>
 <br/>
@@ -33,9 +30,8 @@
               <% @comentario=Comment.where(article_id: @articulo.id)%>
               <% @comentario.each do |c| %>    
                   <tr>
-                  <%@usuarioname=User.find(c.user_id)%>
                   <td>
-                  <h4><strong><%= @usuarioname.nick%> preguntó: </strong><%= c.contenido %><h4>
+                  <h4><%= c.contenido %><h4>
 
                     <table>
                   <% @respuesta=Answer.where(comment_id: c.id)%>
@@ -44,7 +40,7 @@
                       <%@usuarioname=User.find(r.user_id)%>
                       
                       <td>
-                          <div class="alert alert-info" role="alert"><STRONG><%= @usuarioname.nick %></STRONG>: <%=r.contenido%>   
+                          <div class="alert alert-info" role="alert"><STRONG>Subastador</STRONG>: <%=r.contenido%>   
                               <%if current_user!=nil && ((r.user_id==current_user.id || current_user.role =="admin")) %>
                                   <%=link_to "Eliminar",r, method: :delete,  data: {confirm: "Estás Seguro?"},class: "btn btn-danger btn-xs"%>
                               <%end%>

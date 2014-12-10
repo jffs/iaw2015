@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128023351) do
+ActiveRecord::Schema.define(version: 20141210212505) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141128023351) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nombre"
+    t.boolean  "eliminado",  default: false
   end
 
   create_table "comments", force: true do |t|

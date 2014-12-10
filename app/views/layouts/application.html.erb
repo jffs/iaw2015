@@ -29,7 +29,9 @@
 			<% categories = Category.all %>
 			<% categories.each do |c| %>
 			<tr>
-			<td> <li><%= link_to Category.find(c.id).nombre, c %></td> </tr>
+			<td> <% if c.eliminado == false %>
+				 <li><%= link_to Category.find(c.id).nombre, c %></td> </tr>
+				 <% end %>
 			<% end %>
     		
     		
