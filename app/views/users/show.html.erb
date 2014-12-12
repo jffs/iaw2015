@@ -2,7 +2,7 @@
 <div class="container"> 
 
 	<div class="col-md-8">
-		<CENTER><h1><strong><%= @usuario.nick %></strong></h1>
+		<CENTER><titulo><%= @usuario.nick %></titulo>
 		<th>
 		<br/></CENTER>
 	</div>
@@ -11,16 +11,13 @@
 		<br/>
 	</div>
 
-<h2>Datos del usuario</h2>
-<br/>
-<h3>Nombre y apellido: <%=@usuario.nombre%> <%=@usuario.apellido%></h3>
-<h3>Nombre de usuario: <%=@usuario.nick%></h3>
-<h3>Categoria: <%=@usuario.role%></h3>
- 
-<h3>Correo: <%=@usuario.email%></h3>
-
-<h3>Teléfono: <%=@usuario.telefono%></h3>
-</br>
+<subtitulo>Datos del usuario</subtitulo><br/><br/>
+<thtabla2>Nombre y apellido: </thtabla2><thtabla><%=@usuario.nombre%> <%=@usuario.apellido%></thtabla><br/>
+<thtabla2>Nombre de usuario: </thtabla2><thtabla><%=@usuario.nick%></thtabla><br/>
+<thtabla2>Categoria:</thtabla2> <thtabla><%=@usuario.role%></thtabla><br/>
+<thtabla2>Correo: </thtabla2><thtabla><%=@usuario.email%></thtabla><br/>
+<thtabla2>Teléfono:</thtabla2> <thtabla><%=@usuario.telefono%></thtabla>
+</br></br>
 <%= link_to "Editar", edit_user_path(@usuario) ,  class: 'btn btn-info btn-danger btn-ln'%>
 <%= link_to "Eliminar", destroy_user_path(@usuario), data: { confirm: 'Estás seguro?' },  class: 'btn btn-danger btn-ln'%>
 <%= link_to "Volver", users_path , class: 'btn btn-danger btn-ln'%>

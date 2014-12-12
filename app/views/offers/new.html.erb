@@ -1,5 +1,3 @@
 <h3> ¡Realiza una oferta por este producto! </h3>
-<% @oferta.article_id = params[:format]%>
-<% @oferta.user_id = current_user.id %>
-<% @oferta.save %>	
+
 <%= render 'form' %>

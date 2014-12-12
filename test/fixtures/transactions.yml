@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cant: 1.5
+  comision: 1.5
+  cantrec: 1.5
+  numcard: 1
+  user_id: 
+
+two:
+  cant: 1.5
+  comision: 1.5
+  cantrec: 1.5
+  numcard: 1
+  user_id: 

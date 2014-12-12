@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'transactions/new'
+
+  get 'userestas/new'
+
+  get 'userestas/create'
+
+  get 'userestas/destroy'
+
+  get 'userestas/edit'
+
+  get 'userestas/update'
+
+  get 'userestas/index'
+
+  get 'userestas/show'
+
   devise_for :users
 
   resources :comments 
@@ -7,7 +23,8 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
   resources :answers
-  
+  resources :userestas
+  resources :transactions
   get 'offers/new'
   get 'offers/index'
   get 'offers/update'
@@ -23,8 +40,13 @@ Rails.application.routes.draw do
   get 'articles/edit'
   get 'articles/create'
   get 'articles/destroy'
-
+  get '/articles/:id/winner', to: 'articles#winner', as: 'article_winner'
+  get '/articles/:id/choose', to: 'articles#choose', as: 'article_choose'
   get '/userarticles', to: 'articles#userarticles'
+
+
+  get '/categories/:id/recovery', to: 'categories#recovery', as: 'recover_category'
+
 
   get 'users/new'
   get 'users/index'

@@ -1,50 +1,93 @@
 <br/>
 
-<CENTER><font face ='verdana' size='14'><%= @articulo.nombre %></font><hr width="700" size="200"/>
+<CENTER><titulo><%= @articulo.nombre %></titulo>
 
-<%@usuario=User.find(@articulo.user_id)%>
-<h5 style="color:red"><strong>Articulo publicado por:</strong></h5>
-<td> <%= link_to @usuario.nick, @usuario %> </td>
-<br/><br/>
+<hr>
+
+
+<br/>
+<% if Time.now.month == @articulo.created_at.month %>
+    <% dias = (Time.now.day - @articulo.created_at.day) %>   
+<% else %>
+    <% dias = (30 - @articulo.created_at.day + Time.now.day)%>
+<%end%>         
+<% if dias >= @articulo.duracion %> 
+    <% @articulo.finsub = true %>
+    <% @articulo.save %>
+    <div class="alert alert-success" role="alert"><h3>Subasta Finalizada</h3></div>
+<%else%>
+
+    <thtabla>Tiempo restante <%= @articulo.duracion - dias %> dias</thtabla>
+    <br/>              
+<%end%>
+     
+<br/>
 <%= image_tag @articulo.foto, :width => 600, :height => 400 %>
 <br/>
 <br/>
-<font face ='verdana' size='6'>Descripcion</font>
-<br/><br/>
-<p><%= @articulo.descripcion %></p>
+<subtitulo>Descripcion</subtitulo>
+<font face="verdana"><p><%= @articulo.descripcion %></p></font>
 <br/>
 
-<% if (current_user != nil) && (can? :edit, Article) && (@articulo.user_id == current_user.id) %>
+<%if current_user != nil %>
+<% if (can? :edit, Article) && (@articulo.user_id == current_user.id)&& !(@articulo.finsub) %>
   <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
 <% end %>
 
-<%if (current_user != nil) &&(can? :new , Offer) && (@articulo.user_id != current_user.id)%> 
+<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) && !(@articulo.finsub)%>
 <%= link_to "Ofertar", new_offer_path(@articulo.id) ,class: "btn btn-danger" %>
-<%end%>
-		<br/><br/><br/><br/>
+<% end %>
 
+<br/>
+<br/>
+
+
+
+
+<%if (@articulo.finsub)&& !(@articulo.estado) && (@articulo.user_id == current_user.id) %>
+<table class="table">
+  <tr>
+    <thtabla>OFERTAS</thtabla>
+  </tr>
+    <% @oferta = Offer.where(article_id: @articulo.id)%>
+   <% @oferta.each do |o| %>   
+    
+    <tr><td><%= o.contenido %></td>
+    <td><%#= link_to "Elegir ", article_winner_path(@articulo.id,o.user_id) ,class: "btn btn-primary" %></td>
+    <td><%= link_to "Elegir ", article_choose_path(@articulo.id,o.user_id) ,class: "btn btn-primary" %></td>
+    </tr>
+  
+  <% end %> 
+</table>
+<%end%>
+
+<%if (@articulo.estado) && (@articulo.user_id == current_user.id) %>
+   <%= link_to "Ver info", article_winner_path(@articulo.id) ,class: "btn btn-primary" %></td>
+<% end %>
+
+<%if !(@articulo.finsub) %>		
 
 <table class="table">
     <tr>
-        <th> COMENTARIOS </th>
-        <th> ACCIONES </th>
+        <th><thtabla> Comentarios</thtabla> </th>
+        <th><thtabla> Acciones</thtabla> </th>
     </tr> 
               
               <% @comentario=Comment.where(article_id: @articulo.id)%>
               <% @comentario.each do |c| %>    
                   <tr>
-                  <%@usuarioname=User.find(c.user_id)%>
+                  <%#@usuarioname=User.find(c.user_id)%>
                   <td>
-                  <h4><strong><%= @usuarioname.nick%> preguntó: </strong><%= c.contenido %><h4>
+                  <h4><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><font face="verdana"> <%= c.contenido %> </font><h4>
 
                     <table>
                   <% @respuesta=Answer.where(comment_id: c.id)%>
                   <% @respuesta.each do |r| %>  
                       <tr>
-                      <%@usuarioname=User.find(r.user_id)%>
+                      <%#@usuarioname=User.find(r.user_id)%>
                       
                       <td>
-                          <div class="alert alert-info" role="alert"><STRONG><%= @usuarioname.nick %></STRONG>: <%=r.contenido%>   
+                          <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><font face="verdana"> <%=r.contenido%></font>   
                               <%if current_user!=nil && ((r.user_id==current_user.id || current_user.role =="admin")) %>
                                   <%=link_to "Eliminar",r, method: :delete,  data: {confirm: "Estás Seguro?"},class: "btn btn-danger btn-xs"%>
                               <%end%>
@@ -70,11 +113,11 @@
               <%end%>                
 </table>  
 
-<%if can? :new , Comment %>
+<%if current_user!= nil && (can? :new , Comment) %>
 <% @comentario = Comment.new %>
 <%= form_for @comentario do |f| %>
-	<div class="row">
-	<div class="col-md-7">
+  <div class="row">
+  <div class="col-md-7">
             <%= f.text_area :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %></div>
      <div class="col-md-1">
      <%= f.hidden_field :article_id, :value => @articulo.id %> 
@@ -85,6 +128,9 @@
 
 <br/>
 <% if current_user == nil %>
-   Para comentar u ofertar debe iniciar sesión <%= link_to "aquí",  new_user_session_path()%>
+   <font face="verdana">Para comentar u ofertar debe iniciar sesión <%= link_to "aquí",  new_user_session_path()%>
+</font>
+
 <%end %>  
-</CENTER>
+<%end%>
+<%end %>

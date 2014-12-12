@@ -14,20 +14,29 @@ class OffersController < ApplicationController
   end
   
   def update
-    @oferta.update(params.require(:offer).permit([:contenido,:precio]))  
+    @oferta.update(params.require(:offer).permit([:contenido,:precio,:estado]))  
     redirect_to @oferta, :notice => "Oferta editada exitosamente"
   end  
   
   def create
-    @oferta=Offer.create!(params.require(:offer).permit([:contenido,:precio,:article_id,:user_id]))
-    redirect_to @oferta, :notice => "Oferta creada exitosamente"
+    @oferta=Offer.create(params.require(:offer).permit([:contenido,:precio,:article_id,:user_id]))
+    if @oferta.save
+      redirect_to @oferta, :notice => "Oferta creada exitosamente"
+    else
+      redirect_to @oferta, :notice => "Ya ofertaste por este articulo"
+    end
   end  
   
   def show
+    @articulo=Article.find(@oferta.article_id)
   end
   
   def index
-  @oferta = Offer.where(user_id: current_user.id)
+    if current_user.role == "admin"
+       @oferta = Offer.all
+    else  
+       @oferta = Offer.where(user_id: current_user.id)
+    end
   end
   
   def destroy

@@ -12,7 +12,7 @@ include CanCan::Ability
            can [:new, :create, :show , :index, :update ,:edit, :destroy], [Comment]      
            can [:show , :update, :edit], [User]
            can [:show , :index] , [Category]       
-       else
+       elsif current_user.id=="" 
             can [:show , :index], [Article] 
        end
      end

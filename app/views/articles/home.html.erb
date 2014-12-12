@@ -1,31 +1,30 @@
 <CENTER>
-<h1>Bienvenidos a Bestnid</h1>
+<titulo>Bienvenidos a Bestnid</titulo>
 <br/>
-
-<% if current_user != nil %>
-<%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
-
-<% if can? :index, Offer %>
-<%= link_to "Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
-<%end%>
-
-<% if User.find(current_user.id).role == "admin"%>
-<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
-<%end%>
-<%end%>
-
-<% if can? :index, Article %>
+<br/>
 <%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
+<% if current_user != nil %>
+	<% if User.find(current_user.id).role == "admin"%>
+		<%= link_to "Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
+		<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
+		<%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
+		<%= link_to "Transacciones",  transactions_path()    ,class: "btn btn-danger"  %>
+		<%= link_to "Estadisticas"%>
+	<%else%>
+		<%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
+
+		<%= link_to "Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>	
+
+	<%end%>
 <%end%>
-<% if can? :index, User %>
-<%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
-<%end%>
+
+
 <br/>
 <br/>
 
-<h2><%= "Productos publicados recientemente" %></h2>
+<subtitulo><%= "Productos publicados recientemente" %></subtitulo>
 </CENTER>
-<br/>
+<br/><br/><br/>
 <div class="row">
           
 <% @articulos.each do |a| %>  	

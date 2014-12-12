@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
- before_action :get_category, only: [:show,:destroy,:edit, :update]
+ before_action :get_category, only: [:show,:destroy,:edit, :update, :recovery]
   
   def get_category
     @categoria = Category.find(params[:id])
@@ -33,7 +33,13 @@ class CategoriesController < ApplicationController
   end 
 
    def destroy
-    @categoria.destroy
+    @categoria.eliminado = true
+    @categoria.save
     redirect_to :back 
   end
+def recovery 
+    @categoria.eliminado = false
+    @categoria.save
+    redirect_to :back 
+end
 end

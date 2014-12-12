@@ -21,18 +21,18 @@
 			<% if current_user != nil && User.find(current_user.id).role == "admin"  %>	
 			<td><h3><%= link_to "Categorias", categories_path %></h3></td>
 			<%else %>
-			<td><h3>Categorias</h3></td>
+			<td><categoria>Categorias</categoria></td>
 			
 				 
-			<%end%>
-		    </tr>
-			<% categories = Category.all %>
+		<% categories = Category.all %>
 			<% categories.each do |c| %>
 			<tr>
-			<td> <li><%= link_to Category.find(c.id).nombre, c %></td> </tr>
+			<td> <% if c.eliminado == false %>
+				 <li><%= link_to Category.find(c.id).nombre, c %></td> </tr>
+				 <% end %>
 			<% end %>
     		
-    		
+    		<%end%>
     	</div>
 
 

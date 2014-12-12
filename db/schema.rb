@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128023351) do
+ActiveRecord::Schema.define(version: 20141212000322) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(version: 20141128023351) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "category_id"
+    t.boolean  "finsub"
+    t.integer  "winner_id"
   end
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nombre"
+    t.boolean  "eliminado",  default: false
   end
 
   create_table "comments", force: true do |t|
@@ -78,6 +81,28 @@ ActiveRecord::Schema.define(version: 20141128023351) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "transactions", force: true do |t|
+    t.float    "cant"
+    t.float    "comision"
+    t.float    "cantrec"
+    t.integer  "numcard"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "offer_id"
+  end
+
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
+
+  create_table "useresta", force: true do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "nick"
+    t.integer  "ventas"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "nombre"

@@ -32,6 +32,39 @@ class ArticlesController < ApplicationController
     @comentario = Comment.new
   end
 
+
+   def choose
+    @articulo = Article.find(params[:id])
+    @subastador = User.find(@articulo.user_id)
+    @ganador = User.find(params[:format])
+    @articulo.estado = true
+    @articulo.winner_id = @ganador.id
+    @articulo.save
+    op = Offer.where(article_id: @articulo.id)
+    op.each do |o|
+      o.estado = "perdedora"
+      o.save
+      end
+    og = Offer.where(article_id: @articulo.id,user_id: @ganador.id )
+    og.each do |o|
+      op = o
+      end
+    op.estado = "ganadora"
+    op.save  
+    redirect_to :back
+  end 
+
+
+
+
+  def winner
+    @oferta = Offer.find(params[:id])
+    @articulo = Article.find(@oferta.article_id)
+     @subastador = User.find(@articulo.user_id)
+     @ganador = User.find(@articulo.winner_id)
+     
+  end
+
   def edit
   end
 

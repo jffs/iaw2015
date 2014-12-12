@@ -13,6 +13,8 @@
  			<%= f.text_area :contenido, class: "form-control", required: true, placeholder: "¿Por qué desea este producto?" %>
           </div>
 </div>
+ <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :article_id, :value => params[:format] %>
 </br>
 <tr>
 	<th><%= f.submit 'Enviar', class: 'btn btn-danger'%></th>

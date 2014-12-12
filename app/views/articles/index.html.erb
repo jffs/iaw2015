@@ -1,14 +1,14 @@
 <br/>
 <br/>
-<h1> Articulos </h1>
+<titulo> Artículos </titulo><br/><br/>
 <table class="table">	
 	<tr>
-		 <th> Nombre </th>	
-		 <th> Duracion </th>
-		 <th> Usuario </th>
-		 <th> Foto </th>
-		   <%if can? :new , Article%>
-		   <th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
+		 <th><thtabla>Nombre</thtabla></th>	
+		 <th><thtabla>Duración</thtabla></th>
+		 <th><thtabla>Usuario</thtabla></th>
+		 <th><thtabla>Foto</thtabla></th> 
+		 <%if current_user!= nil%>
+		   		<th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
 		   <%end%>
     </tr>
    
@@ -26,7 +26,7 @@
 			 
 			 <td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
 			 
-			 <%if (can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin")) %>
+			 <%if current_user!=nil && ((can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin"))) %>
 			 <td> <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
 			 
 			 

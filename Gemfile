@@ -26,7 +26,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
+gem 'hirb'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'devise'
@@ -35,9 +35,9 @@ gem 'cancan'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem "twitter-bootstrap-rails"
- gem 'therubyracer', :platform => :ruby
+gem 'therubyracer', :platform => :ruby
 
-gem 'libv8', '3.16.14.7'
+#gem 'libv8', '3.11.8.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
