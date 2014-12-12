@@ -1,4 +1,3 @@
-
 class DefaultDelete < ActiveRecord::Migration
 
 def change  

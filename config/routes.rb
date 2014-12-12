@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   get 'users/destroy'
   get '/users/:id/destroy', to: 'users#destroy', as: 'destroy_user'
 
+
+  get 'categories/:id/recovery', to: 'categories#recovery', as: 'recover_category'
+
  
 
   root 'articles#home'
