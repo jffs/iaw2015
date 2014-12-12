@@ -45,9 +45,6 @@ Rails.application.routes.draw do
   get '/userarticles', to: 'articles#userarticles'
 
 
-  get '/categories/:id/recovery', to: 'categories#recovery', as: 'recover_category'
-
-
   get 'users/new'
   get 'users/index'
   get 'users/update'
