@@ -21,13 +21,11 @@ ActiveRecord::Schema.define(version: 20151013180943) do
   create_table "articles", force: true do |t|
     t.string   "nombre"
     t.text     "descripcion"
-    t.boolean  "estado"
     t.string   "foto"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "category_id"
-    t.boolean  "finsub"
     t.string   "ubicacion"
     t.string   "precio",         default: "0"
     t.integer  "subcategory_id"
@@ -80,9 +78,7 @@ ActiveRecord::Schema.define(version: 20151013180943) do
   create_table "users", force: true do |t|
     t.string   "nombre"
     t.string   "apellido"
-    t.integer  "telefono"
     t.string   "username"
-    t.string   "foto"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "",     null: false
