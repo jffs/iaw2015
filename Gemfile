@@ -7,7 +7,7 @@ gem 'rails', '4.1.4'
 group :development, :test do
     gem 'sqlite3'
 end
-gem 'pg', group: :production
+#gem 'pg', group: :production
 #gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -36,7 +36,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem "twitter-bootstrap-rails"
 gem 'therubyracer', :platform => :ruby
-
+gem 'materialize-sass'
 #gem 'libv8', '3.11.8.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

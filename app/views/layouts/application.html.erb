@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BestnidOficial</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,40 +10,14 @@
 
 	<%= render 'layouts/header' %>
 	
-	<div class="container"> 
-		<div class="col-md-2">
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<tr>	
-			<% if current_user != nil && User.find(current_user.id).role == "admin"  %>	
-			<td><h3><%= link_to "Categorias", categories_path %></h3></td>
-			<%else %>
-			<td><categoria>Categorias</categoria></td>
-			
-				 
-		<% categories = Category.all %>
-			<% categories.each do |c| %>
-			<tr>
-			<td> <% if c.eliminado == false %>
-				 <li><%= link_to Category.find(c.id).nombre, c %></td> </tr>
-				 <% end %>
-			<% end %>
-    		
-    		<%end%>
-    	</div>
-
-
-
 		<div class="col-md-10">    
 			<% if flash[:notice] %>
-				<div class="alert alert-success" role='alert'>
-					<%= flash[:notice] %>
+				<div class="green-text center" role='alert'>
+					<h1><%= flash[:notice] %></h1>
 				</div>
 				<%end%>
 			<% if flash[:alert] %>
-			    <div class="alert alert-error"><%= flash[:alert] %>
+			    <div class="red-text center"><h1><%= flash[:alert] %></h1>
 			    </div>	
 			<%end%>
 		<%= yield %>

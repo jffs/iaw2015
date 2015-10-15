@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  database: bestnid_production
+  database: iaw2015_production
   pool: 5
   timeout: 5000

@@ -1,37 +1,22 @@
-<br/>
-<br/>
-<titulo> Artículos </titulo><br/><br/>
-<table class="table">	
-	<tr>
-		 <th><thtabla>Nombre</thtabla></th>	
-		 <th><thtabla>Duración</thtabla></th>
-		 <th><thtabla>Usuario</thtabla></th>
-		 <th><thtabla>Foto</thtabla></th> 
-		 <%if current_user!= nil%>
-		   		<th><a href="/articles/new" class="btn btn-danger" role="button">Subastar</a></th>
-		   <%end%>
-    </tr>
-   
+<div class="container">	
    <%if @articulos.size == 0 %>
-   		<tr class="success"> <td colspan="3"> Todavía no hay articulos publicados </td> </tr>
+   		<div class="row center"><h3 class="teal-text"> Todavía no hay articulos publicados </h3> </div>
    	<%else%>
-    <% @articulos.each do |a| %>  	
- 		
 
- 		<tr>	
-			 <td> <%= link_to a.nombre, article_path(a) %> </td>	
-			 <% d = Time.now  %>
-			 <td> <%=time_ago_in_words a.created_at %>    </td>
+	<ul class="collection with-header">
+  		<li class="collection-header"><h4 class="teal-text thin">Articulos</h4></li>
+    		<% @articulos.each do |a| %>  	
+ 			<li class="collection-item"><div><%= link_to a.nombre, article_path(a) %> 
+ 										<%= image_tag a.foto , :width => 70, :height => 70 %> 
+ 										<div class="secondary-content rigth">
+ 										 <%if current_user!=nil && ((can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin"))) %>
+			 <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
+			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%>
+ 			</div></div><br></li>
 			 
-			 <td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
-			 
-			 <%if current_user!=nil && ((can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin"))) %>
-			 <td> <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
-			 
-			 
-			 <%= link_to "Eliminar", a,method: :delete, data:{ confirm: "Estás seguro?" } , class: "btn btn-danger"%> </td>
+			
 			 <%end%>
 		</tr>	
 	<% end %>	
 <% end %>	
-</table>
+</div>

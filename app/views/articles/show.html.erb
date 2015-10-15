@@ -1,119 +1,66 @@
+
+<div class="container">
 <br/>
-
-<CENTER><titulo><%= @articulo.nombre %></titulo>
-
-<hr>
-
-
-<br/>
-<% if Time.now.month == @articulo.created_at.month %>
-    <% dias = (Time.now.day - @articulo.created_at.day) %>   
-<% else %>
-    <% dias = (30 - @articulo.created_at.day + Time.now.day)%>
-<%end%>         
-<% if dias >= @articulo.duracion %> 
-    <% @articulo.finsub = true %>
-    <% @articulo.save %>
-    <div class="alert alert-success" role="alert"><h3>Subasta Finalizada</h3></div>
-<%else%>
-
-    <thtabla>Tiempo restante <%= @articulo.duracion - dias %> dias</thtabla>
-    <br/>              
-<%end%>
-     
-
-<br/><br/>
-<%= image_tag @articulo.foto, :width => 600, :height => 400 %>
-<br/>
-<br/>
-<subtitulo>Descripcion</subtitulo>
-<font face="verdana"><p><%= @articulo.descripcion %></p></font>
-<br/>
-
-<%if current_user != nil %>
-<% if (can? :edit, Article) && (@articulo.user_id == current_user.id)&& !(@articulo.finsub) %>
-  <%= link_to "Edit", edit_article_path(@articulo),class: "btn btn-danger"  %>
-<% end %>
-
-<%if (can? :new , Offer) && (@articulo.user_id != current_user.id) && !(@articulo.finsub)%>
-<%= link_to "Ofertar", new_offer_path(@articulo.id) ,class: "btn btn-danger" %>
-<% end %>
-
+<br/><br/> <div class="row center">
+<%= image_tag @articulo.foto_url.to_s %>
+</div>
 <br/>
 <br/>
 
-
-
-
-<%if (@articulo.finsub)&& !(@articulo.estado) && (@articulo.user_id == current_user.id) %>
-<table class="table">
-  <tr>
-    <thtabla>OFERTAS</thtabla>
-  </tr>
-    <% @oferta = Offer.where(article_id: @articulo.id)%>
-   <% @oferta.each do |o| %>   
-    
-    <tr><td><%= o.contenido %></td>
-    <td><%#= link_to "Elegir ", article_winner_path(@articulo.id,o.user_id) ,class: "btn btn-primary" %></td>
-    <td><%= link_to "Elegir ", article_choose_path(@articulo.id,o.user_id) ,class: "btn btn-primary" %></td>
-    </tr>
-  
-  <% end %> 
-</table>
-<%end%>
-
-<%if (@articulo.estado) && (@articulo.user_id == current_user.id) %>
-   <%= link_to "Ver info", article_winner_path(@articulo.id) ,class: "btn btn-primary" %></td>
-<% end %>
-
-<%if !(@articulo.finsub) %>		
-
-<table class="table">
-    <tr>
-        <th><thtabla> Comentarios</thtabla> </th>
-        <th><thtabla> Acciones</thtabla> </th>
-    </tr> 
+<% if current_user != nil %>
+<div class="row">
+  <ul class="col s4 offset-s4 inline">
+              <li><a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para valorar la publicación positivamente"><i class="medium material-icons blue-text text-darken-2">thumb_up</i></a>
+              <a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para valorar la publicación negativamente"><i class="material-icons blue-text text-darken-2 medium">thumb_down</i></a>
               
-              <% @comentario=Comment.where(article_id: @articulo.id)%>
-              <% @comentario.each do |c| %>    
-                  <tr>
-                  <%#@usuarioname=User.find(c.user_id)%>
-                  <td>
-                  <h4><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><font face="verdana"> <%= c.contenido %> </font><h4>
-                  </td>
-                  <td>
-                      <%if ( (current_user!=nil)&&((@articulo.user_id == current_user.id) || (current_user.role =="admin"))) %>
-                              <%= link_to "Eliminar", c, method: :delete,  data: {confirm: "Estás Seguro?"},class: 'btn btn-danger btn-sm' %>
+              <a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para reportar este contenido como indebido"><i class="medium material-icons yellow-text text-darken-2">warning</i></a></li>
+    </ul>
+</div><%end%>
+
+<div class="col s6">
+    <ul class="collection">
+      <li class="collection-item">Nombre: <span id="nombre"><%= @articulo.nombre %></span></li>
+      <li class="collection-item">Ubicacion: <span id="ubicacion"><%= @articulo.ubicacion %> </span></li>
+      <li class="collection-item">Fecha: <span id="fecha"> <%= @articulo.created_at.strftime("%m/%d/%Y") %></span></li>
+      <li class="collection-item">Descripcion: <span id="descripcion"><%= @articulo.descripcion %></span></li>
+      <li class="collection-item">Precio: $<span id="precio"><%= @articulo.precio %></span></li>
+
+    </ul>
+  </div>
+  <%if (current_user == nil) || (@articulo.user_id != current_user.id) %>
+  <a class="waves-effect waves-light btn medium right" href="#!">Agregar al carrito<i class="material-icons rigth">add_shopping_cart</i></a>
+ <%end%></div>
+<br/>
+
+<div class="container">
+  <h4>Comentarios</h4>
+    <table class="striped bordered">
+        <thead>
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <% @comentario=Comment.where(article_id: @articulo.id)%>
+          <% @comentario.each do |c| %>    
+              
+            <td><i class="material-icons small white-text circle teal">person</i>
+                  <%= User.find(c.user_id).nombre%></td>
+                  <td><%= c.contenido %></td>
+                 <td>   
+                    <ul class="right hide-on-med-and-down">
+                    <li>
+                        <%if ( (current_user!=nil)&&((@articulo.user_id == current_user.id) || (current_user.role =="admin"))) %>
+                              <%= link_to '<i class="red-text material-icons">delete</i>'.html_safe, c, method: :delete,  data: {confirm: "Estás Seguro?"}%>
                       <%end%>
-                      <%if current_user!=nil && (c.user_id==current_user.id || @articulo.user_id == current_user.id) %>
-                              <%= link_to "Responder", new_answer_path(c.id), class: "btn btn-primary btn-sm" %>
-                      <%end%>        
+              <a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para reportar este comentario como ofensivo"><i class="material-icons red-text">report</i></a></li>
+            </ul>
                   </td>
-                    <table>
-                  <% @respuesta=Answer.where(comment_id: c.id)%>
-                  <% @respuesta.each do |r| %>  
-                      <tr>
-                      <%#@usuarioname=User.find(r.user_id)%>
-                      
-                      <td>
-
-                          <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><font face="verdana"> <%=r.contenido%></font>   
-
-                           
-                              <%if current_user!=nil && ((r.user_id==current_user.id || current_user.role =="admin")) %>
-                                  <%=link_to "Eliminar",r, method: :delete,  data: {confirm: "Estás Seguro?"},class: "btn btn-danger btn-xs"%>
-                              <%end%>
-                          </div>
-                      </td>
-                      </tr>
-                  <%end%>         
-                  </table>
-                  
-                
-
-
-
-
+                    
                   </tr> 
               <%end%>                
 </table>  
@@ -123,7 +70,7 @@
 <%= form_for @comentario do |f| %>
   <div class="row">
   <div class="col-md-7">
-            <%= f.text_area :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %></div>
+      <%= f.text_area :contenido, class: 'form-control',required: true, placeholder: 'Ingrese un comentario' %></div>
      <div class="col-md-1">
      <%= f.hidden_field :article_id, :value => @articulo.id %> 
     <%= f.submit 'Enviar', class: 'btn btn-danger'%></div>
@@ -133,9 +80,8 @@
 
 <br/>
 <% if current_user == nil %>
-   <font face="verdana">Para comentar u ofertar debe iniciar sesión <%= link_to "aquí",  new_user_session_path()%>
+   <font face="verdana">Para comentar debe iniciar sesión <%= link_to "aquí",  new_user_session_path()%>
 </font>
 
 <%end %>  
-<%end%>
-<%end %>
+</div>

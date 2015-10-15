@@ -11,25 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218213220) do
+ActiveRecord::Schema.define(version: 20151013180943) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "answers", force: true do |t|
-    t.string   "contenido"
-    t.integer  "comment_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
   create_table "articles", force: true do |t|
     t.string   "nombre"
     t.text     "descripcion"
-    t.integer  "duracion"
     t.boolean  "estado"
     t.string   "foto"
     t.datetime "created_at"
@@ -37,8 +28,9 @@ ActiveRecord::Schema.define(version: 20141218213220) do
     t.integer  "user_id"
     t.integer  "category_id"
     t.boolean  "finsub"
-    t.integer  "winner_id"
-    t.string   "transaccion"
+    t.string   "ubicacion"
+    t.string   "precio",         default: "0"
+    t.integer  "subcategory_id"
   end
 
   create_table "categories", force: true do |t|
@@ -59,19 +51,6 @@ ActiveRecord::Schema.define(version: 20141218213220) do
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "offers", force: true do |t|
-    t.text     "contenido"
-    t.float    "precio",     default: 0.0
-    t.string   "estado",     default: "En espera"
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "offers", ["article_id"], name: "index_offers_on_article_id"
-  add_index "offers", ["user_id"], name: "index_offers_on_user_id"
-
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -83,28 +62,11 @@ ActiveRecord::Schema.define(version: 20141218213220) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
 
-  create_table "statistics", force: true do |t|
-    t.string   "tipo"
-    t.date     "fechai"
-    t.date     "fechaf"
+  create_table "subcategories", force: true do |t|
+    t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
-    t.string   "cant"
   end
-
-  create_table "transactions", force: true do |t|
-    t.float    "cant"
-    t.float    "comision"
-    t.float    "cantrec"
-    t.integer  "numcard"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "offer_id"
-  end
-
-  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
 
   create_table "useresta", force: true do |t|
     t.string   "nombre"
@@ -118,10 +80,8 @@ ActiveRecord::Schema.define(version: 20141218213220) do
   create_table "users", force: true do |t|
     t.string   "nombre"
     t.string   "apellido"
-    t.string   "sexo"
     t.integer  "telefono"
-    t.string   "nick"
-    t.integer  "nivel"
+    t.string   "username"
     t.string   "foto"
     t.datetime "created_at"
     t.datetime "updated_at"

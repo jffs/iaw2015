@@ -3,7 +3,6 @@
 	<tr>
 		 <th> Nombre </th>
 		 <th> Descripción </th>	
-		 <th> Duracion </th>
 		 <th> Foto </th>
 	</tr>   
 
@@ -11,8 +10,6 @@
 	<tr>	
 		<td> <%= link_to a.nombre, article_path(a) %> </td>	
         <td> <%= truncate(a.descripcion, length: 30, separator: ' ') %> </td>
-		<% d = Time.now  %>
-		<td> <%=time_ago_in_words a.created_at %></td>
 		<td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
 	</tr>
 <% end %>

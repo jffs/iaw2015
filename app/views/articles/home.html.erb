@@ -1,40 +1,49 @@
-<CENTER>
-<titulo>Bienvenidos a Bestnid</titulo>
-<br/>
-<br/>
-<%= link_to "Articulos", articles_path() ,class: "btn btn-danger" %>
-<% if current_user != nil %>
-	<% if User.find(current_user.id).role == "admin"%>
-		<%= link_to "Ofertas",   offers_path()   ,class: "btn btn-danger"  %>
-		<%= link_to "Crear una categoría",   new_category_path() ,class: "btn btn-danger"  %>
-		<%= link_to "Usuarios",  users_path()    ,class: "btn btn-danger"  %>
-		<%= link_to "Transacciones",  transactions_path()    ,class: "btn btn-danger"  %>
-		<%= link_to "Estadisticas",   statistics_path()   ,class: "btn btn-danger"  %>
-	<%else%>
-		<%= link_to "Mis Articulos",  userarticles_path ,class: "btn btn-danger" %>
+<!DOCTYPE HTML>
+<title>Compra y venta online</title>
 
-		<%= link_to "Mis Ofertas",   offers_path()   ,class: "btn btn-danger"  %>	
+<%= stylesheet_link_tag 'owl.carousel', media: 'all', 'data-turbolinks-track' => true %>
 
-	<%end%>
-<%end%>
+<%= javascript_include_tag 'jquery.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'owl.carousel', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'index', 'data-turbolinks-track' => true %>
 
-
-<br/>
-<br/>
-
-<subtitulo><%= "Productos publicados recientemente" %></subtitulo>
-</CENTER>
-<br/><br/><br/>
-<div class="row">
-          
-<% @articulos.each do |a| %>  	
- 		
- 		<div class="col-md-3">
-			<td>
-			
-			 
-			 <%= image_tag a.foto , :width => 120, :height => 120 %> </br>
-			 <h4><%= link_to a.nombre, article_path(a) %></h4></td>
+</head>
+<body onload="init()">
+	<div class="row center">
+		<div class="col s12">
+				<h3>Sitio Web</h3>
+				<h5 class="teal-text">Compra lo que necesitas, vende lo que no</h5>
+		</div>
+  		</div>
+		<% categories = Category.all %>
+			<% categories.each do |c| %>
+			<% if c.eliminado == false && Article.where(category_id: c.id).length != 0%>
+				<div class="Recent-wroks">
+					<div class="wrap">
+						<div class="Recent-wrok">
+						<h5 class="heading"> <%= Category.find(c.id).nombre %></h5>
+					<div id="owl-demo" class="owl-carousel">
+					 	<% Article.where(category_id: c.id).each do |a| %>
+						<div class="item">
+							<div class="cau_left">
+								<%= image_tag a.foto_url.to_s %>
+							</div>
+							<div class="cau_left">
+								<h5><%= link_to a.nombre, article_path(a) %></a></h5>
+								<p><%= a.descripcion %>
+								</p>
+							</div>
+						</div>
+						<%end%>
+					</div>
+					</div>
+				</div>
 			</div>
-	<% end %>	
-</div>
+			<% end %>
+		<% end %>
+    		
+
+  			
+
+</body>
+</html>

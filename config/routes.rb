@@ -1,48 +1,12 @@
 Rails.application.routes.draw do
-  get 'statistics/create'
-
-  get 'statistics/new'
-
-  get 'statistics/generate'
-
-  get 'statistics/show'
-
-  get 'statistics/index'
-
-  get 'transactions/new'
-
-  get 'userestas/new'
-
-  get 'userestas/create'
-
-  get 'userestas/destroy'
-
-  get 'userestas/edit'
-
-  get 'userestas/update'
-
-  get 'userestas/index'
-
-  get 'userestas/show'
-
+  resources :subcategories
   devise_for :users
-
+  resources :categories do
+   resources :subcategories
+end
   resources :comments 
-  resources :offers
   resources :articles
   resources :users
-  resources :categories
-  resources :answers
-  resources :userestas
-  resources :transactions
-  resources :statistics
-  get 'offers/new'
-  get 'offers/index'
-  get 'offers/update'
-  get 'offers/show'
-  get 'offers/edit'
-  get 'offers/create'
-  get 'offers/destroy'
 
   get 'articles/new'
   get 'articles/index'
@@ -65,15 +29,12 @@ Rails.application.routes.draw do
   get 'users/destroy'
   get '/users/:id/destroy', to: 'users#destroy', as: 'destroy_user'
 
-
   get 'categories/:id/recovery', to: 'categories#recovery', as: 'recover_category'
 
  
 
   root 'articles#home'
 
-  get '/statistics/:id', to: 'statisticss#show', as: 'statistics_mostrar'
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

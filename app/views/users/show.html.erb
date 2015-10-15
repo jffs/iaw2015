@@ -2,21 +2,16 @@
 <div class="container"> 
 
 	<div class="col-md-8">
-		<CENTER><titulo><%= @usuario.nick %></titulo>
+		<CENTER><titulo><%= @usuario.username %></titulo>
 		<th>
 		<br/></CENTER>
-	</div>
-	<div class="col-md-4">
-		<%= image_tag @usuario.foto, :width => 150, :height => 150 %>
-		<br/>
 	</div>
 
 <subtitulo>Datos del usuario</subtitulo><br/><br/>
 <thtabla2>Nombre y apellido: </thtabla2><thtabla><%=@usuario.nombre%> <%=@usuario.apellido%></thtabla><br/>
-<thtabla2>Nombre de usuario: </thtabla2><thtabla><%=@usuario.nick%></thtabla><br/>
+<thtabla2>Nombre de usuario: </thtabla2><thtabla><%=@usuario.username%></thtabla><br/>
 <thtabla2>Categoria:</thtabla2> <thtabla><%=@usuario.role%></thtabla><br/>
 <thtabla2>Correo: </thtabla2><thtabla><%=@usuario.email%></thtabla><br/>
-<thtabla2>Teléfono:</thtabla2> <thtabla><%=@usuario.telefono%></thtabla>
 </br></br>
 <%= link_to "Editar", edit_user_path(@usuario) ,  class: 'btn btn-info btn-danger btn-ln'%>
 <%= link_to "Eliminar", destroy_user_path(@usuario), data: { confirm: 'Estás seguro?' },  class: 'btn btn-danger btn-ln'%>

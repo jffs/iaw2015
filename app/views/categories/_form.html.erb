@@ -2,13 +2,12 @@
 </br>
 
 <div class="row">
-          <div class="col-md-3"> </br>
+          <div class="col s6"> 
 			<%= f.label "Nombre *"%> 
-			<%=f.text_field :nombre,class: "form-control" , required: true, uniqueness: true, placeholder: "Nombre de la categoría" %>
+			<%=f.text_field :nombre , required: true, uniqueness: true %>
           </div>
 </div>
 </br>
 <tr>
 	<th><%= f.submit 'Enviar', class: 'btn btn-danger'%></th>
-</tr>
-<% end %>
+</tr><%end%>

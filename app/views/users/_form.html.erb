@@ -1,49 +1,26 @@
 <%=form_for @usuario , :html => {:multipart => true} do |f|   %> 
-  <div class="col-xs-6 col-md-4">	 
+  
   <div class="row">
-  	<div class="col-md-8">
-    	<%= f.label :nombre %>
-    	<%= f.text_field :nombre, class: 'form-control',required: true,  placeholder: 'Ingrese Nombre' %>
-  	</div>
-  </div>
-  <br/>
-  <div class="row">
-  	<div class="col-md-8">
-    	<%= f.label :apellido %>
-    	<%= f.text_field :apellido, class: 'form-control',required: true,  placeholder: 'Ingrese Apellido'%>
-  	</div>
-  </div>
-  <br/>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <%= f.label :nombre %>
+          <%= f.text_field :nombre, class: 'validate',required: true%>
+        </div>
+        <div class="input-field col s6">
+          <%= f.label :apellido %>
+          <%= f.text_field :apellido, class: 'form-control',required: true %>
+        </div>
+      </div>
+
   <div class="row">
   	<div class="col-md-8">
     	<%= f.label "Nombre de usuario" %>
-    	<%= f.text_field :nick, class: 'form-control',required: true,  placeholder: 'Ingrese un nombre de usuario' %>
+    	<%= f.text_field :username, class: 'form-control',required: true,  placeholder: 'Ingrese un nombre de usuario' %>
   	</div>
   </div>
   <br/>
-  
-  
-  <div class="row">
-  	<div class="col-md-8">
-    	<%= f.label :telefono %>
-    	<%= f.text_field :telefono, class: 'form-control',  placeholder: 'Ingrese su teléfono' %>
-  	</div>
-  </div> 
-<br/>
-<div class="row">
-    <div class="col-md-8">
-      <%= f.label :sexo %><br/>
-      <%=f.select :sexo, ['Masculino', 'Femenino'] , class: 'form-control',  placeholder: 'Ingrese su teléfono' %>
-    </div>
-  </div> 
-<br/>
-  <div class="row">
-          <div class="col-md-8">
-            <%= f.label :foto,'Foto' %>
-            <%= f.file_field :foto %>
-          </div>
-        </div>
-         <br/>
   <button type="submit" class="btn btn-danger">Guardar</button>
   </div>
 <%  end  %>

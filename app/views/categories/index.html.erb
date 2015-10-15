@@ -1,26 +1,23 @@
 <% @categorias = Category.all%>
-<% if @categorias.size != 0 %>
-
-<table class="table">
-<% @categorias.each do |c| %>
-			<tr>
+<div class="container">
+	<% if @categorias.size != 0 %>
+  	<ul class="collection with-header">
+  		<li class="collection-header"><h4 class="teal-text thin">Categorías</h4></li>
+		<% @categorias.each do |c| %>
 			<% if c.eliminado == false %>
-				  <td><%= link_to Category.find(c.id).nombre, c %></td>
-					<td><%= link_to "Editar", edit_category_path(c) , class: 'btn btn-info btn-sm' %></td>
+			<li class="collection-item"><div><%= link_to Category.find(c.id).nombre, c %>
+				<div class="secondary-content rigth"><%= link_to "Editar", edit_category_path(c), class: 'btn'%>
+				<%= link_to "Eliminar", c, method: :delete, data: {confirm: "Estás seguro? Si eliminas una categoria se eliminarán los articulos asociados"},class: 'btn'%></div></div><br></li>
 		
-					<td><%= link_to "Eliminar", c, method: :delete, data: {confirm: "Estás seguro? Si eliminas una categoria se eliminarán los articulos asociados"},class: 'btn btn-danger btn-sm'%></td>
-				<%else%>
-
-				<tr class="danger"><td><%= link_to Category.find(c.id).nombre, c %></td> 
-					<td><%= link_to "Restaurar", recover_category_path(c)  ,class: 'btn btn-danger btn-sm' %></td> </tr>
+			<%else%>
+			<li class="collection-item red"><div><%= link_to Category.find(c.id).nombre, c, class: 'white-text' %>
+				<div class="right"><%= link_to "Restaurar", recover_category_path(c), class: 'btn'%></div></div><br></li>
 				<%end%>
-			<br/>
-			<br/>
-<%end%>
-</td>
-</table>
-<%else%>
-<div class="alert alert-success" role="alert"><tr class="success"> <td colspan="3">No hay ninguna categoría creada </td> </tr></div>
+			<%end%>
+			</ul>
+	<%else%>
+	<div class="alert alert-success" role="alert"><tr class="success"> <td colspan="3">No hay ninguna categoría creada </td> </tr></div>
 	
-<%end%>
-    		
+	<%end%>
+<%= link_to "Crear categoría", new_category_path(), class: 'btn'%>
+</div>
