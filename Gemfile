@@ -41,8 +41,7 @@ gem "twitter-bootstrap-rails"
 gem 'therubyracer', :platform => :ruby
 gem 'materialize-sass'
 gem 'rails_12factor', group: :production  
-gem 'unicorn'  
-ruby "2.2.1"  
+gem 'puma'
 
 #gem 'libv8', '3.11.8.0'
 # Use ActiveModel has_secure_password
