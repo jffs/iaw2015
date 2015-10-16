@@ -1,5 +1,21 @@
-<body> 
-<h3 class="center-align teal-text thin"> Publica un nuevo producto </h3>
+<script type='text/javascript'>
 
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem( 'firstLoad' ) )
+    {
+      localStorage[ 'firstLoad' ] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem( 'firstLoad' );
+  }
+})();
+
+</script>
+<body>
+<h3 class="center-align teal-text thin"> Publica un nuevo producto </h3> 
 <%= render 'form' %>
 </body>

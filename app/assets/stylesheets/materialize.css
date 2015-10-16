@@ -4768,11 +4768,6 @@ span.badge {
 .mdi-navigation-arrow-back:before {
   content: "\e8a1"; }
 
-.mdi-navigation-arrow-drop-down-circle:before {
-  content: "\e8a2"; }
-
-.mdi-navigation-arrow-drop-down:before {
-  content: "\e8a3"; }
 
 .mdi-navigation-arrow-drop-up:before {
   content: "\e8a4"; }
