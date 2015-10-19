@@ -24,20 +24,22 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
+#gem 'jquery-turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'hirb'
 gem 'carrierwave'
-gem 'bootstrap-sass', '~> 3.3.0'
+#gem 'bootstrap-sass', '~> 3.3.0'
 gem 'devise'
 gem 'rolify'
 gem 'cancan'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem "twitter-bootstrap-rails"
+#gem "twitter-bootstrap-rails"
 gem 'therubyracer', :platform => :ruby
 gem 'materialize-sass'
 gem 'rails_12factor', group: :production  
