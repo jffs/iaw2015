@@ -15,7 +15,6 @@ end
   get 'articles/edit'
   get 'articles/create'
   get 'articles/destroy'
-  get '/articles/:id/winner', to: 'articles#winner', as: 'article_winner'
   get '/articles/:id/choose', to: 'articles#choose', as: 'article_choose'
   get '/userarticles', to: 'articles#userarticles'
 

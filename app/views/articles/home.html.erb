@@ -35,7 +35,7 @@
 		<% categories = Category.all %>
 			<% categories.each do |c| %>
 			<% if c.eliminado == false && Article.where(category_id: c.id).length != 0%>
-				<div class="Recent-wroks">
+				<ul><li><div class="Recent-wroks">
 					<div class="wrap">
 						<div class="Recent-wrok">
 						<h5 class="heading"> <%= Category.find(c.id).nombre %></h5>
@@ -55,7 +55,7 @@
 					</div>
 					</div>
 				</div>
-			</div>
+			</div></li>
 			<% end %>
 		<% end %>
     		

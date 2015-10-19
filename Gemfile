@@ -42,6 +42,7 @@ gem 'therubyracer', :platform => :ruby
 gem 'materialize-sass'
 gem 'rails_12factor', group: :production  
 gem 'puma'
+gem 'cloudinary'
 
 #gem 'libv8', '3.11.8.0'
 # Use ActiveModel has_secure_password
