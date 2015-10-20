@@ -1,9 +1,18 @@
 development:
-  cloud_name: "sample"
-  api_key: "874837483274837"
-  api_secret: "a676b67565c6767a6767d6767f676fe1"
-
+  cloud_name: iaw2015
+  api_key: '399659993567734'
+  api_secret: xIZu94rm2hSbjcobVcBovVro3uo
+  enhance_image_tag: true
+  static_image_support: false
 production:
-  cloud_name: "sample"
-  api_key: "874837483274837"
-  api_secret: "a676b67565c6767a6767d6767f676fe1"
+  cloud_name: iaw2015
+  api_key: '399659993567734'
+  api_secret: xIZu94rm2hSbjcobVcBovVro3uo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: iaw2015
+  api_key: '399659993567734'
+  api_secret: xIZu94rm2hSbjcobVcBovVro3uo
+  enhance_image_tag: true
+  static_image_support: false
