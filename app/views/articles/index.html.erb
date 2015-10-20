@@ -7,7 +7,7 @@
   		<li class="collection-header"><h4 class="teal-text thin">Articulos</h4></li>
     		<% @articulos.each do |a| %>  	
  			<li class="collection-item"><div><%= link_to a.nombre, article_path(a) %> 
- 										<%= image_tag a.foto , :width => 70, :height => 70 %> 
+ 										<%= image_tag a.foto_url.to_s , :width => 70, :height => 70 %> 
  										<div class="secondary-content rigth">
  										 <%if current_user!=nil && ((can? :edit, Article) && ((a.user_id == current_user.id) || (current_user.role =="admin"))) %>
 			 <%= link_to "Editar", edit_article_path(a),class: "btn btn-primary" %> 	
