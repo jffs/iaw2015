@@ -16,7 +16,7 @@
 		</div>
   		</div>
 		<% categories = Category.primerasdosnovacias %>
-		<% unless categories==nil%>
+		<% unless categories.length == 0%>
 				<ul><br><li><h4 class="heading teal-text thin"><%= link_to Category.find(categories[0].id).nombre, category_path(Category.find(categories[0].id)) %></h4>
 					<div id="owl-demo1" class="owl-carousel">
 					 	<% Article.where(category_id: categories[0].id).each do |a| %>
@@ -29,7 +29,9 @@
 						</div>
 						
 					
-			</li><li><br><h4 class="heading teal-text thin"> <%= link_to Category.find(categories[1].id).nombre, category_path(Category.find(categories[1].id)) %></h4>
+			</li>
+			<%unless categories.length ==1%>
+				<li><br><h4 class="heading teal-text thin"> <%= link_to Category.find(categories[1].id).nombre, category_path(Category.find(categories[1].id)) %></h4>
 					<div id="owl-demo2" class="owl-carousel">
 					 	<% Article.where(category_id: categories[1].id).each do |a| %>
 						<div class="item">
@@ -41,7 +43,8 @@
 						</div>
 						
 					
-			</li></ul>
+			</li>
+			<%end%></ul>
 			<%end%>
   			
 
