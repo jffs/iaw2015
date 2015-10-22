@@ -1,16 +1,38 @@
-<h2> Categoría : <%= @categoria.nombre%> </h2>
-<table class="table">	
-	<tr>
-		 <th> Nombre </th>
-		 <th> Descripción </th>	
-		 <th> Foto </th>
-	</tr>   
 
-<% Article.where(category_id: @categoria.id).each do |a| %>
-	<tr>	
-		<td> <%= link_to a.nombre, article_path(a) %> </td>	
-        <td> <%= truncate(a.descripcion, length: 30, separator: ' ') %> </td>
-		<td> <%= image_tag a.foto , :width => 70, :height => 70 %> </td>
-	</tr>
-<% end %>
-</table>
+<body>
+  <div class="container">
+  <div class="row title center"><h3 class="teal-text thin center"> <%= @categoria.nombre%> </h3></div><br>
+  <!--seccion de productos-->
+  <div class="col s12">
+  	<table class="bordered responsive-table">
+        <thead>
+          <tr>
+              <th></th>
+              <th ></th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        	<% Article.where(category_id: @categoria.id).each do |a| %>
+          <tr>
+            <td><%= image_tag a.foto_url.to_s, :width => 90, :height => 90 %></td>
+            <td><span class="title"><%= link_to a.nombre, article_path(a) %> </span>
+      		<p><%= truncate(a.descripcion, length: 30, separator: ' ') %></p>
+      		</td>
+            <td><ul class="right">
+      		<li><p>$<%= a.precio%></p></li>
+      		<li><p><input type="checkbox" onclick="feedback('filled-in-box')" class="filled-in" id="filled-in-box" />
+      		<label for="filled-in-box">Agregar al carrito</label></p></li>
+    		<li><%= link_to "Ver articulo", article_path(a), class: "waves-effect waves-light btn" %>
+  			</li>
+  		</ul></td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+      
+</div><!-- fin seccion productos-->
+</div>
+</body>
+</html>

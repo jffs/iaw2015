@@ -15,34 +15,34 @@
 				<h5 class="teal-text">Compra lo que necesitas, vende lo que no</h5>
 		</div>
   		</div>
-		<% categories = Category.all %>
-			<% categories.each do |c| %>
-			<% if c.eliminado == false && Article.where(category_id: c.id).length != 0%>
-				<ul><li><div class="Recent-wroks">
-					<div class="wrap">
-						<div class="Recent-wrok">
-						<h5 class="heading"> <%= Category.find(c.id).nombre %></h5>
-					<div id="owl-demo" class="owl-carousel">
-					 	<% Article.where(category_id: c.id).each do |a| %>
+		<% categories = Category.primerasdosnovacias %>
+		<% unless categories==nil%>
+				<ul><br><li><h4 class="heading teal-text thin"><%= link_to Category.find(categories[0].id).nombre, category_path(Category.find(categories[0].id)) %></h4>
+					<div id="owl-demo1" class="owl-carousel">
+					 	<% Article.where(category_id: categories[0].id).each do |a| %>
 						<div class="item">
-							<div class="cau_left">
-								<%= image_tag a.foto_url.to_s %>
+								<%= image_tag a.foto_url.to_s, :width => 300, :height => 300, class: "circle", alt: "Owl Image"  %>
+								<h5><a><%= link_to a.nombre, article_path(a) %></a></h5>
+								<p><%= a.descripcion %></p>
 							</div>
-							<div class="cau_left">
-								<h5><%= link_to a.nombre, article_path(a) %></a></h5>
-								<p><%= a.descripcion %>
-								</p>
-							</div>
-						</div>
 						<%end%>
-					</div>
-					</div>
-				</div>
-			</div></li>
-			<% end %>
-		<% end %>
-    		
-
+						</div>
+						
+					
+			</li><li><br><h4 class="heading teal-text thin"> <%= link_to Category.find(categories[1].id).nombre, category_path(Category.find(categories[1].id)) %></h4>
+					<div id="owl-demo2" class="owl-carousel">
+					 	<% Article.where(category_id: categories[1].id).each do |a| %>
+						<div class="item">
+								<%= image_tag a.foto_url.to_s, :width => 300, :height => 300, class: "circle", alt: "Owl Image"  %>
+								<h5><a><%= link_to a.nombre, article_path(a) %></a></h5>
+								<p><%= a.descripcion %></p>
+							</div>
+						<%end%>
+						</div>
+						
+					
+			</li></ul>
+			<%end%>
   			
 
 </body>
