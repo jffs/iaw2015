@@ -1,4 +1,4 @@
-   function init(){ $(document).ready(function() {
+   /*function init(){ $(document).ready(function() {
         $("#owl-demo").owlCarousel({
           items :4,
           singleItem: true,
@@ -43,4 +43,4 @@
     $('select').material_select();
   });
         
-    }
+    }*/
