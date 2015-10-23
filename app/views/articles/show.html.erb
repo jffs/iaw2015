@@ -27,7 +27,8 @@
 
     </ul>
   </div>
-  <%if (current_user == nil) || (@articulo.user_id != current_user.id) %>
+  <%if (current_user != nil) && (@articulo.user_id != current_user.id) %>
+<%= link_to 'Add to cart', shopping_cart_path(:product_id => @articulo.id), :method => 'POST' %>
   <a class="waves-effect waves-light btn medium right" href="#!">Agregar al carrito<i class="material-icons rigth">add_shopping_cart</i></a>
  <%end%></div>
 <br/>

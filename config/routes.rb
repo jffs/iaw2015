@@ -7,6 +7,7 @@ end
   resources :comments 
   resources :articles
   resources :users
+  resource :shopping_cart
 
   get 'articles/new'
   get 'articles/index'

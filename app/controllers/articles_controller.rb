@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :get_article, only: [:show,:edit,:destroy,:update]
+  before_action :get_article, only: [:add,:show,:edit,:destroy,:update]
 
   def get_article
     @articulo = Article.find(params[:id])
@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
       redirect_to :back, :notice => "Error al editar articulo"
     end
   end
+  
 
   def show
     @comentario = Comment.new

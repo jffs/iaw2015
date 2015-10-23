@@ -1,6 +1,6 @@
 <header>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script type="text/javascript">       $(".dropdown-button").dropdown();
+<script type="text/javascript">  $(document).ready(function(){     $(".dropdown-button").dropdown();})
 </script>
   <% categories = Category.where(eliminado: false) %>
       <ul id="dropdown1" class="dropdown-content">
@@ -11,8 +11,8 @@
         <%end%>
         <%end%>
       </ul>
-
-    <nav class="teal lighten-1">
+  <div class="col s12">
+<nav class="teal lighten-1">
 <div class="nav-wrapper">
       <ul class="left hide-on-med-and-down">
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Ver categorías <i class="material-icons right">arrow_drop_down</i></a></li>
@@ -30,7 +30,8 @@
            <li><%= link_to "Iniciar sesión" , new_user_session_path() %></li>
            <li><%= link_to "Registrarse", new_user_registration_path() %></li>
         <%elsif%>
-            <li><%= link_to "Cerrar sesión" , destroy_user_session_path(), method: :delete %></li>
+            <li><%= link_to "Cerrar sesión" , destroy_user_session_path(), method: :delete %></li>   
+           <li> <%= current_user.nombre%></li>
 
             <%if current_user.role =="admin"%>
               <li><%= link_to "Administrar categorias" , categories_path() %></li>
@@ -38,8 +39,11 @@
 
             <%end%>
         <%end %>
-        <li><a href=""><i class="material-icons right">shopping_cart</i></a></li>
+        <li><%=link_to, root_path do %>
+            <i class="material-icons right">shopping_cart</i>
+            <%end%></li>
       </ul>
     </div>
   </nav>
+</div>
 </header>

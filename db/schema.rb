@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013180943) do
+ActiveRecord::Schema.define(version: 20151022212025) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
@@ -21,11 +21,13 @@ ActiveRecord::Schema.define(version: 20151013180943) do
   create_table "articles", force: true do |t|
     t.string   "nombre"
     t.text     "descripcion"
+    t.boolean  "estado"
     t.string   "foto"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "category_id"
+    t.boolean  "finsub"
     t.string   "ubicacion"
     t.string   "precio",         default: "0"
     t.integer  "subcategory_id"
@@ -60,6 +62,22 @@ ActiveRecord::Schema.define(version: 20151013180943) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
 
+  create_table "shopping_cart_items", force: true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shopping_carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subcategories", force: true do |t|
     t.string   "nombre"
     t.datetime "created_at"
@@ -78,7 +96,9 @@ ActiveRecord::Schema.define(version: 20151013180943) do
   create_table "users", force: true do |t|
     t.string   "nombre"
     t.string   "apellido"
+    t.integer  "telefono"
     t.string   "username"
+    t.string   "foto"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "",     null: false
