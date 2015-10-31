@@ -3,23 +3,23 @@ class ShoppingCartsController < ApplicationController
 
   def create
     @product = Article.find(params[:product_id])
-    @shopping_cart.add(@product, @product.precio)
+    @shopping_cart.add(@product, @product.precio,1, false)
+    redirect_to :back
   end
 
   def destroy
-    @item=Article.find(params[:product_id])
-    @shopping_cart.remove(@item, 1)
+    @product = Article.find(params[:product_id])
+    @shopping_cart.remove(@product, 1)
     redirect_to :back 
   end
   
   def show
-
   end
 
   private
   def extract_shopping_cart
-    shopping_cart_id = session[:shopping_cart_id]
-    @shopping_cart = session[:shopping_cart_id] ? ShoppingCart.find(shopping_cart_id) : ShoppingCart.create
-    session[:shopping_cart_id] = @shopping_cart.id
+    @cart = ShoppingCart.where(user_id: current_user.id).first
+    @shopping_cart=  @cart != nil ? ShoppingCart.find(@cart.id) : ShoppingCart.create(user_id: current_user.id)
   end
+
 end

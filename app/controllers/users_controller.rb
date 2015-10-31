@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     @usuario = User.create(params.require(:user).permit([:nombre, :apellido, :telefono, :correo, :nick, :contrasena,:foto, :role]))
     if @usuario.save
       redirect_to @usuario, :notice => "Usuario creado exitosamente"
+    
     else
       redirect_to :back, :notice => "Error al creado usuario"
     end

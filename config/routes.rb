@@ -7,7 +7,7 @@ end
   resources :comments 
   resources :articles
   resources :users
-  resource :shopping_cart
+  resource :shopping_carts
 
   get 'articles/new'
   get 'articles/index'
@@ -18,7 +18,6 @@ end
   get 'articles/destroy'
   get '/articles/:id/choose', to: 'articles#choose', as: 'article_choose'
   get '/userarticles', to: 'articles#userarticles'
-
 
   get 'users/new'
   get 'users/index'
