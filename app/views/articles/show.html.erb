@@ -28,11 +28,10 @@
     </ul>
   </div>
   <%if (current_user != nil) && (@articulo.user_id != current_user.id) %>
-  <%= link_to shopping_carts_path(:product_id => @articulo.id),:method => 'POST',class: "waves-effect waves-light btn medium right" do %><span class="thin">Agregar al carrito</span>
+  <%= link_to shopping_carts_path(:product_id => @articulo.id),:method => 'POST',class: "waves-effect waves-light btn medium right",  :onclick => "disable()" do %><span class="thin">Agregar al carrito</span>
   <i class="material-icons rigth">add_shopping_cart</i></a>
- <%end%>
- <%end%></div>
-<br/>
+ </div><%end%>
+ <%end%><br/>
 
 <div class="container">
   <h4>Comentarios</h4>
