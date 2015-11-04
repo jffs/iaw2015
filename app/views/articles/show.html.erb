@@ -2,12 +2,12 @@
 <div class="container">
 <br/>
 <br/><br/> <div class="row center">
-<%= image_tag @articulo.foto_url.to_s %>
+<%= image_tag @articulo.foto_url.to_s, :width => 300, :height => 300 %>
 </div>
 <br/>
 <br/>
 
-<% if current_user != nil %>
+<%if (current_user != nil) && (@articulo.user_id != current_user.id) %>
 <div class="row">
   <ul class="col s4 offset-s5 inline">
 
