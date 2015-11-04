@@ -8,7 +8,8 @@ end
   resources :articles
   resources :users
   resource :shopping_carts
-
+  resource :votes
+  
   get 'articles/new'
   get 'articles/index'
   get 'articles/update'

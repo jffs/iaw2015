@@ -12,12 +12,12 @@
 	
 		<div class="col-md-10">    
 			<% if flash[:notice] %>
-				<div class="green-text center" role='alert'>
-					<h3><%= flash[:notice] %></h3>
+				<div class="green-text thin center" role='alert'>
+					<h3 class="thin"><%= flash[:notice]%></h3>
 				</div>
 				<%end%>
 			<% if flash[:alert] %>
-			    <div class="red-text center"><h3><%= flash[:alert] %></h3>
+			    <div class="red-text thin center"><h3 class="thin"><%= flash[:alert] %></h3>
 			    </div>	
 			<%end%>
 		<%= yield %>

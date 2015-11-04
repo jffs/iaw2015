@@ -23,7 +23,7 @@ end
      @comentario=Comment.create!(params.require(:comment).permit([:contenido, :article_id]))
      @comentario.user_id=current_user.id
      @comentario.save
-     redirect_to article_path(@comentario.article_id), :notice => "exito al comentar"
+     redirect_to article_path(@comentario.article_id), :notice => "Exito al comentar"
 
   end 
 

@@ -9,32 +9,59 @@
 
 <% if current_user != nil %>
 <div class="row">
-  <ul class="col s4 offset-s4 inline">
-              <li><a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para valorar la publicación positivamente"><i class="medium material-icons blue-text text-darken-2">thumb_up</i></a>
-              <a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para valorar la publicación negativamente"><i class="material-icons blue-text text-darken-2 medium">thumb_down</i></a>
-              
-              <a href="#!" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Haz click para reportar este contenido como indebido"><i class="medium material-icons yellow-text text-darken-2">warning</i></a></li>
-    </ul>
-</div><%end%>
+  <ul class="col s4 offset-s5 inline">
+
+               <% voto = Vote.where(user_id: current_user.id).where(item_id: @articulo.id).first %>
+               <%if voto != nil%>
+                  <li>
+                    <%if voto.vote == true%>
+                      <i class="medium material-icons blue-text text-darken-2">thumb_up</i>
+                      <i class="medium material-icons green-text text-darken-2">done</i>
+     
+                    <%else%>
+                      <i class="medium material-icons blue-text text-darken-2">thumb_down</i>
+                    <i class="medium material-icons green-text text-darken-2">done</i>
+                  </li>
+               <%end%>
+               <%else%>
+                <li>
+                <%= link_to votes_path(:product_id => @articulo.id, :vote => true),:method => 'POST',class: "waves-effect waves-light btn medium right",class: "tooltipped" ,'data-position': "bottom", 'data-delay': "10", 'data-tooltip': "Haz click para valorar la publicación positivamente"  do %><i class="medium material-icons blue-text text-darken-2">thumb_up</i>
+              <%end%>
+             
+              <%= link_to votes_path(:product_id => @articulo.id, :vote => false),:method => 'POST',class: "waves-effect waves-light btn medium right",class: "tooltipped" ,'data-position': "bottom", 'data-delay': "10", 'data-tooltip': "Haz click para valorar la publicación negativamente"  do %><i class="medium material-icons blue-text text-darken-2">thumb_down</i>
+              <%end%> 
+             </li>
+             <%end%>
+  </ul>
+</div>
+<%end%>
 
 <div class="col s6">
     <ul class="collection">
-      <li class="collection-item">Nombre: <span id="nombre"><%= @articulo.nombre %></span></li>
-      <li class="collection-item">Ubicacion: <span id="ubicacion"><%= @articulo.ubicacion %> </span></li>
-      <li class="collection-item">Fecha: <span id="fecha"> <%= @articulo.created_at.strftime("%m/%d/%Y") %></span></li>
-      <li class="collection-item">Descripcion: <span id="descripcion"><%= @articulo.descripcion %></span></li>
-      <li class="collection-item">Precio: $<span id="precio"><%= @articulo.precio %></span></li>
+      <li class="collection-item"><b>Nombre</b>: <span id="nombre"><%= @articulo.nombre %></span></li>
+      <li class="collection-item"><b>Ubicacion</b>: <span id="ubicacion"><%= @articulo.ubicacion %> </span></li>
+      <li class="collection-item"><b>Fecha</b>: <span id="fecha"> <%= @articulo.created_at.strftime("%m/%d/%Y") %></span></li>
+      <li class="collection-item"><b>Descripcion</b>: <span id="descripcion"><%= @articulo.descripcion %></span></li>
+      <li class="collection-item"><b>Precio</b>: $<span id="precio"><%= @articulo.precio %></span></li>
 
     </ul>
   </div>
+
   <%if (current_user != nil) && (@articulo.user_id != current_user.id) %>
-  <%= link_to shopping_carts_path(:product_id => @articulo.id),:method => 'POST',class: "waves-effect waves-light btn medium right",  :onclick => "disable()" do %><span class="thin">Agregar al carrito</span>
-  <i class="material-icons rigth">add_shopping_cart</i></a>
- </div><%end%>
+  <%if ShoppingCart.where(user_id: current_user.id).first.shopping_cart_items.where(item_id: @articulo.id).first != nil%> 
+    <%= link_to shopping_carts_path(:product_id => @articulo.id), method: :delete, data:{ confirm: "Quitar este elemento del carrito?" }, class: "waves-effect waves-light btn medium right" do%>
+        <span class="thin">Quitar del carrito</span>
+        <i class="material-icons rigth">shopping_cart</i>  
+    <%end%>  
+  <%else%>
+  <%= link_to shopping_carts_path(:product_id => @articulo.id),:method => 'POST',class: "waves-effect waves-light btn medium right" do %><span class="thin">Agregar al carrito</span>
+  <i class="material-icons rigth">add_shopping_cart</i>
+ <%end%>
+ <%end%>
  <%end%><br/>
 
 <div class="container">
-  <h4>Comentarios</h4>
+  <h4>Comentarios <i class="material-icons red-text medium">chat</i></h4>
     <table class="striped bordered">
         <thead>
           <tr>
