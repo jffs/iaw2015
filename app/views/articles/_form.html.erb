@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col s6" id="category_id"> 
         <%= f.label :category_id, 'Categoría' %>
-          <%= collection_select(:article, :category_id, Category.where(eliminado: false).all , :id, :nombre) %>
+          <%= collection_select(:article, :category_id, Category.where(eliminado: false).all , :id, :nombre)%>
           </div>
       </div>  
       <br>
