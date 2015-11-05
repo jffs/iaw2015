@@ -48,11 +48,13 @@
   </div>
 
   <%if (current_user != nil) && (@articulo.user_id != current_user.id) %>
+  <%if ShoppingCart.where(user_id: current_user.id).first != nil%>
   <%if ShoppingCart.where(user_id: current_user.id).first.shopping_cart_items.where(item_id: @articulo.id).first != nil%> 
     <%= link_to shopping_carts_path(:product_id => @articulo.id), method: :delete, data:{ confirm: "Quitar este elemento del carrito?" }, class: "waves-effect waves-light btn medium right" do%>
         <span class="thin">Quitar del carrito</span>
         <i class="material-icons rigth">shopping_cart</i>  
     <%end%>  
+  <%end%>
   <%else%>
   <%= link_to shopping_carts_path(:product_id => @articulo.id),:method => 'POST',class: "waves-effect waves-light btn medium right" do %><span class="thin">Agregar al carrito</span>
   <i class="material-icons rigth">add_shopping_cart</i>
