@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113162050) do
+ActiveRecord::Schema.define(version: 20151117171739) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20151113162050) do
     t.integer  "category_id"
     t.boolean  "finsub"
     t.string   "ubicacion"
-    t.string   "precio",         default: "0"
+    t.float    "precio",         limit: 255, default: 0.0
     t.integer  "subcategory_id"
   end
 
