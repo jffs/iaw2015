@@ -21,7 +21,7 @@ end
   get 'articles/destroy'
   get '/articles/:id/choose', to: 'articles#choose', as: 'article_choose'
   get '/userarticles', to: 'articles#userarticles'
-
+  get '/advanceSearch', to: 'articles#advanceSearch'
   get 'users/new'
   get 'users/index'
   get 'users/update'

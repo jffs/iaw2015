@@ -11,12 +11,23 @@ class ArticlesController < ApplicationController
   def userarticles
     @articulos = Article.where(user_id: current_user.id)
   end
+  def advancedSerach
+  end
   def new
     @articulo = Article.new
   end
 
   def index
     @articulos = Article.search(params[:search])
+    if params[:location].present?
+      @articulos= @articulos & Article.search_by_location(params[:location])
+    end
+    if params[:pricemin].present?
+      @articulos= @articulos & Article.search_by_priceMin(params[:pricemin])
+    end
+    if params[:pricemax].present?
+      @articulos= @articulos & Article.search_by_priceMax(params[:pricemax])
+    end
   end
 
   def update
