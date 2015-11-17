@@ -12,7 +12,10 @@
                   <%end%></li>
       <%end%>
     </ul>
-    <a class="waves-effect waves-light btn-large right" href="compra.html">Comprar<i class="material-icons right">attach_money</i></a>
+
+    <%= link_to @shopping_cart.paypal_url(root_url, payment_notifications_url), class: "waves-effect waves-light btn-large right" do %>
+      <i class="material-icons right">attach_money</i>Comprar
+    <%end%>
   </div>
   </div>
 </div>

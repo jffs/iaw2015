@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 has_many :articles
-has_many :offers
 
 ROLES = %w[admin user]
 #validates_presence_of :nombre, :apellido, :nick , :password, :password_confirmation, :email
@@ -14,6 +13,6 @@ ROLES = %w[admin user]
 #validar el formato de correo 
 mount_uploader :foto, FotoUploader 
 
-    
+
 
 end

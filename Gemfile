@@ -46,6 +46,7 @@ gem 'materialize-sass'
 gem 'rails_12factor', group: :production  
 gem 'puma'
 gem 'cloudinary'
+gem 'mercadopago'
 
 
 

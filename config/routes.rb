@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'payment_notifications/create'
+
   resources :subcategories
   devise_for :users
   resources :categories do
@@ -9,7 +11,7 @@ end
   resources :users
   resource :shopping_carts
   resource :votes
-  
+  resources :payment_notifications
   get 'articles/new'
   get 'articles/index'
   get 'articles/update'

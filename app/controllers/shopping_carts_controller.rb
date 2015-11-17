@@ -17,9 +17,19 @@ class ShoppingCartsController < ApplicationController
   end
 
   private
+  
   def extract_shopping_cart
-    @cart = ShoppingCart.where(user_id: current_user.id).first
-    @shopping_cart=  @cart != nil ? ShoppingCart.find(@cart.id) : ShoppingCart.create(user_id: current_user.id)
+  @cart = ShoppingCart.where(user_id: current_user.id).last
+
+  if @cart 
+    @shopping_cart ||= ShoppingCart.find(@cart.id)
+    @shopping_cart = nil if PaymentNotification.where(cart_id: @shopping_cart.id).first != nil && PaymentNotification.where(cart_id: @shopping_cart.id).first.status == "Completed"
+  end
+  
+  if @cart.nil? || @shopping_cart.nil?
+    @shopping_cart = ShoppingCart.create(user_id: current_user.id)
+  end
+  @shopping_cart
   end
 
 end
