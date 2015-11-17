@@ -19,20 +19,20 @@ class ArticlesController < ApplicationController
 
   def index
     @articulos=Article.all
-    if !params[:search].present?
+    if params[:search].present?
     @articulos=  Article.search_by_title(params[:search]) 
     end
-    if !params[:name].present?
+    if params[:name].present?
       @articulos = Article.search_by_title(params[:search])
     end
-    if !params[:location].present?
+    if params[:location].present?
       @articulos= Article.search_by_location(params[:location])
     end
-    if !params[:pricemin].present?
+    if params[:pricemin].present?
       preciomin = params[:pricemin]
       @articulos= Article.where("precio > #{preciomin}")
     end
-    if !params[:pricemax].present?
+    if params[:pricemax].present?
       preciomax = params[:pricemax]
       @articulos= Article.where("precio < #{preciomax}")
     end
