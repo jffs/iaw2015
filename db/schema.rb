@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117181517) do
+ActiveRecord::Schema.define(version: 20151117182227) do
 
   create_table "abilities", force: true do |t|
     t.datetime "created_at"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20151117181517) do
     t.integer  "category_id"
     t.boolean  "finsub"
     t.string   "ubicacion"
-    t.float    "precio",         limit: 255, default: 0.0
     t.integer  "subcategory_id"
+    t.float    "precio"
   end
 
   create_table "categories", force: true do |t|
