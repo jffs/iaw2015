@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
 end
+gem 'pg_search'
 #gem 'pg', group: :production
 #gem 'sqlite3'
 # Use SCSS for stylesheets
