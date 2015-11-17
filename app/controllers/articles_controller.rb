@@ -29,10 +29,10 @@ class ArticlesController < ApplicationController
       @articulos= @articulos & Article.search_by_location(params[:location])
     end
     if !params[:pricemin].nil?
-      @articulos= @articulos & Article.where("precio > params[:pricemin]")
+      @articulos= @articulos & Article.where("precio > #{params[:pricemin]}")
     end
     if !params[:pricemax].nil?
-      @articulos= @articulos & Article.where("precio < params[:pricemax]")
+      @articulos= @articulos & Article.where("precio < #{params[:pricemax]}")
     end
   end
 
