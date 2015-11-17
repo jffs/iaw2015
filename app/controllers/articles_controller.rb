@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     @articulos=  Article.search_by_title(params[:search]) 
     end
     if params[:name].present?
-      @articulos = Article.search_by_title(params[:search])
+      @articulos = Article.search_by_title(params[:name])
     end
     if params[:location].present?
       @articulos= Article.search_by_location(params[:location])
