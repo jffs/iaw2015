@@ -3,19 +3,39 @@
   <div class="container">
   <div class="row">
   <div class="col s12">
-    <ul class="collection with-header">
-      <li class="collection-header"><h4>Tu lista de productos</h4></li>
-      <% @shopping_cart.shopping_cart_items.each do |sc| %>
-        <li class="collection-item"><div><%= link_to Article.find(sc.item_id).nombre, article_path(Article.find(sc.item_id)) %>
-                  <%= link_to shopping_carts_path(:product_id => sc.item_id), method: :delete, data:{ confirm: "Quitar este elemento del carrito?" }, class: "right" do%>
-                  <i class="material-icons">delete</i>
-                  <%end%></li>
-      <%end%>
-    </ul>
+     <h4 class="teal-text thin">Tu lista de productos</h4>
+ <table class="highlight striped" >
+        <thead>
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+          </tr>
+        </thead>
 
-    <%= link_to @shopping_cart.paypal_url(root_url, payment_notifications_url), class: "waves-effect waves-light btn-large right" do %>
+        <tbody>
+          <% @shopping_cart.shopping_cart_items.each do |sc| %>
+          <tr>
+            <td><%= link_to Article.find(sc.item_id).nombre, article_path(Article.find(sc.item_id)) %></td>
+            <td></td>
+            <td><ul class="right hide-on-med-and-down">
+      <li>$<%=sc.price%><%= link_to shopping_carts_path(:product_id => sc.item_id), method: :delete, data:{ confirm: "Quitar este elemento del carrito?" }, class: "right" do%>
+                  <i class="material-icons">delete</i></td><%end%></li>
+                </ul>
+          </tr>
+          <%end%>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="right">Total = $<%= @shopping_cart.total%></td>
+          </tr>
+        </tbody>
+      </table>
+          <%= link_to @shopping_cart.paypal_url(root_url, payment_notifications_url), class: "waves-effect waves-light btn-large right" do %>
       <i class="material-icons right">attach_money</i>Comprar
     <%end%>
+
+
   </div>
   </div>
 </div>
