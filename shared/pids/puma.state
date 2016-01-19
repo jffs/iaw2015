@@ -1,0 +1,30 @@
+---
+pid: 972
+config: !ruby/object:Puma::Configuration
+  cli_options: 
+  conf: 
+  options:
+    :min_threads: 1
+    :max_threads: 6
+    :quiet: false
+    :debug: false
+    :binds:
+    - unix:///var/www/iaw2015/shared/sockets/puma.sock
+    :workers: 1
+    :daemon: false
+    :mode: :http
+    :before_fork: []
+    :worker_timeout: 60
+    :worker_boot_timeout: 60
+    :worker_shutdown_timeout: 30
+    :environment: production
+    :redirect_stdout: "/var/www/iaw2015/shared/log/puma.stdout.log"
+    :redirect_stderr: "/var/www/iaw2015/shared/log/puma.stderr.log"
+    :redirect_append: true
+    :pidfile: "/var/www/iaw2015/shared/pids/puma.pid"
+    :state: "/var/www/iaw2015/shared/pids/puma.state"
+    :control_url: unix:///tmp/puma-status-1453233966710-972
+    :config_file: config/puma.rb
+    :control_url_temp: "/tmp/puma-status-1453233966710-972"
+    :control_auth_token: 638462a7ed8b9ee22e263ecbb0d4989e
+    :tag: iaw2015

@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
 end
+gem 'pg'
 gem 'pg_search'
 #gem 'pg', group: :production
 #gem 'sqlite3'
@@ -48,9 +49,9 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'cloudinary'
 gem 'mercadopago'
+#gem 'capistrano3-puma', github: "seuros/capistrano-puma"
 
-
-
+#gem 'capistrano', '~> 3.4'
 #gem 'libv8', '3.11.8.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

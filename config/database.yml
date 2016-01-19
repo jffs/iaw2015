@@ -8,6 +8,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
+  host: localhost
   timeout: 5000
 development:
   adapter: sqlite3
@@ -21,7 +22,11 @@ test:
   timeout: 5000
 
 production:
+  host: localhost
   adapter: postgresql
   database: iaw2015_production
   pool: 5
+  username: juan
+  password: 1234
+
   timeout: 5000
